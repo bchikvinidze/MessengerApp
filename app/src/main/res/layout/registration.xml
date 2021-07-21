@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/register"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/defaultImage"
+        android:layout_width="@dimen/defaultImageDimens"
+        android:layout_height="@dimen/defaultImageDimens"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/defaultImageFromTop"
+        android:src="@drawable/avatar_image_placeholder"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/nickname"
+        android:layout_width="@dimen/edittextWidth"
+        android:layout_height="@dimen/edittextHeight"
+        android:gravity="center_horizontal"
+        android:text="@string/nickname"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/defaultImage"
+        android:layout_marginTop="@dimen/loginFromImage"
+        android:textSize="@dimen/edittextFontSize"
+        android:background="@drawable/roundedview"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/password"
+        android:layout_width="@dimen/edittextWidth"
+        android:layout_height="@dimen/edittextHeight"
+        android:layout_marginTop="@dimen/passwordFromNickname"
+        android:gravity="center_horizontal"
+        android:text="@string/password"
+        android:textAlignment="center"
+        android:textSize="@dimen/edittextFontSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nickname"
+        android:theme="@style/Theme.MessengerApp"
+        android:background="@drawable/roundedview"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/profession"
+        android:layout_width="@dimen/edittextWidth"
+        android:layout_height="@dimen/edittextHeight"
+        android:layout_marginTop="@dimen/signinButtonFromPassword"
+        android:gravity="center_horizontal"
+        android:text="@string/whatido"
+        android:textAlignment="center"
+        android:textSize="@dimen/edittextFontSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        android:theme="@style/Theme.MessengerApp"
+        android:background="@drawable/roundedview"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signupButton"
+        android:layout_width="@dimen/signinButtonWidth"
+        android:layout_height="@dimen/signinButtonHeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profession"
+        android:layout_marginTop="@dimen/signupButtonFromProfession"
+        android:text="@string/signup"
+        android:textSize="@dimen/signinFontSize"
+        android:theme="@style/Theme.MessengerApp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
