@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/profile"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/defaultImage"
+        android:layout_width="@dimen/defaultImageDimens"
+        android:layout_height="@dimen/defaultImageDimens"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/defaultImageFromTop"
+        android:src="@drawable/avatar_image_placeholder"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/nickname"
+        android:layout_width="@dimen/edittextWidth"
+        android:layout_height="@dimen/edittextHeight"
+        android:gravity="center_horizontal"
+        android:text="@string/nickname"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/defaultImage"
+        android:layout_marginTop="@dimen/loginFromImage"
+        android:textSize="@dimen/edittextFontSize"
+        android:background="@drawable/roundedview"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/password"
+        android:layout_width="@dimen/edittextWidth"
+        android:layout_height="@dimen/edittextHeight"
+        android:layout_marginTop="@dimen/passwordFromNickname"
+        android:gravity="center_horizontal"
+        android:text="@string/password"
+        android:textAlignment="center"
+        android:textSize="@dimen/edittextFontSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nickname"
+        android:theme="@style/Theme.MessengerApp"
+        android:background="@drawable/roundedview"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/updateButton"
+        android:layout_width="@dimen/signinButtonWidth"
+        android:layout_height="@dimen/signinButtonHeight"
+        android:text="@string/update"
+        android:textSize="@dimen/signinFontSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        android:theme="@style/Theme.MessengerApp"
+        android:layout_marginTop="@dimen/signupButtonFromProfession"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signoutButton"
+        android:layout_width="@dimen/signinButtonWidth"
+        android:layout_height="@dimen/signinButtonHeight"
+        android:layout_marginBottom="@dimen/signinButtonFromPassword"
+        android:text="@string/signout"
+        android:textSize="@dimen/signinFontSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/updateButton"
+        style="?attr/materialButtonOutlinedStyle"
+        android:textColor="@color/grey"
+        android:theme="@style/Theme.MessengerApp"
+        />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/profileBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_anchor="@id/bottomAppbar"
+            android:layout_margin="@dimen/fabMargin"
+            app:srcCompat="@drawable/ic_plus_24"/>
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="bottom"
+            app:fabAlignmentMode="end"
+            app:menu="@menu/profile_bar_menu"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

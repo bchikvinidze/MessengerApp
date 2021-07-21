@@ -14,4 +14,5 @@
     <dimen name="roundRad">10dp</dimen>
     <dimen name="framewidth">1dp</dimen>
     <dimen name="signupButtonFromProfession">50dp</dimen>
+    <dimen name="fabMargin">25dp</dimen>
 </resources>
