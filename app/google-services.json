@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "554677032770",
+    "project_id": "messengerapp-6addd",
+    "storage_bucket": "messengerapp-6addd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554677032770:android:a712cf22ac1eef709f1adb",
+        "android_client_info": {
+          "package_name": "com.nchikvinidze.messengerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "554677032770-nl2ipl852884ihe8o74unrh2s3n43tug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp5MnHasFIatZHvXUWaM05fOTmaNVvm1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "554677032770-nl2ipl852884ihe8o74unrh2s3n43tug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
