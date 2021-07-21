@@ -8,7 +8,7 @@ import com.google.firebase.ktx.Firebase
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.authorization)
+        setContentView(R.layout.profile)
         val database = Firebase.database
     }
 }
