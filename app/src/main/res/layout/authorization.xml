@@ -6,4 +6,79 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/defaultImage"
+        android:layout_width="@dimen/defaultImageDimens"
+        android:layout_height="@dimen/defaultImageDimens"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/defaultImageFromTop"
+        android:src="@drawable/avatar_image_placeholder"/>
+
+    <EditText
+        android:id="@+id/nickname"
+        android:layout_width="@dimen/edittextWidth"
+        android:layout_height="@dimen/edittextHeight"
+        android:gravity="center_horizontal"
+        android:text="@string/nickname"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/defaultImage"
+        android:layout_marginTop="@dimen/loginFromImage"
+        android:textSize="@dimen/edittextFontSize"
+        />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="@dimen/edittextWidth"
+        android:layout_height="@dimen/edittextHeight"
+        android:layout_marginTop="@dimen/passwordFromNickname"
+        android:gravity="center_horizontal"
+        android:text="@string/password"
+        android:textAlignment="center"
+        android:textSize="@dimen/edittextFontSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nickname" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signinButton"
+        android:layout_width="@dimen/signinButtonWidth"
+        android:layout_height="@dimen/signinButtonHeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        android:layout_marginTop="@dimen/signinButtonFromPassword"
+        android:text="@string/signin"
+        android:textSize="@dimen/signinFontSize"
+        android:theme="@style/Theme.MessengerApp"/>
+
+
+    <TextView
+        android:id="@+id/notRegisteredQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notregistered"
+        app:layout_constraintBottom_toTopOf="@+id/signupButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signupButton"
+        android:layout_width="@dimen/signinButtonWidth"
+        android:layout_height="@dimen/signinButtonHeight"
+        android:layout_marginBottom="@dimen/signinButtonFromPassword"
+        android:text="@string/signup"
+        android:textSize="@dimen/signinFontSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        style="?attr/materialButtonOutlinedStyle"
+        android:textColor="@color/grey"
+        android:theme="@style/Theme.MessengerApp"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

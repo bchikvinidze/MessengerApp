@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="defaultImageDimens">150dp</dimen>
+    <dimen name="defaultImageFromTop">100dp</dimen>
+    <dimen name="loginFromImage">50dp</dimen>
+    <dimen name="edittextWidth">200dp</dimen>
+    <dimen name="edittextHeight">42dp</dimen>
+    <dimen name="edittextFontSize">18dp</dimen>
+    <dimen name="passwordFromNickname">10dp</dimen>
+    <dimen name="signinButtonHeight">45dp</dimen>
+    <dimen name="signinButtonWidth">90dp</dimen>
+    <dimen name="signinButtonFromPassword">10dp</dimen>
+    <dimen name="signinFontSize">10dp</dimen>
+</resources>
