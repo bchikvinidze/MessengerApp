@@ -11,4 +11,6 @@
     <dimen name="signinButtonWidth">90dp</dimen>
     <dimen name="signinButtonFromPassword">10dp</dimen>
     <dimen name="signinFontSize">10dp</dimen>
+    <dimen name="roundRad">10dp</dimen>
+    <dimen name="framewidth">1dp</dimen>
 </resources>

@@ -16,7 +16,7 @@
         android:layout_marginTop="@dimen/defaultImageFromTop"
         android:src="@drawable/avatar_image_placeholder"/>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/nickname"
         android:layout_width="@dimen/edittextWidth"
         android:layout_height="@dimen/edittextHeight"
@@ -28,9 +28,10 @@
         app:layout_constraintTop_toBottomOf="@+id/defaultImage"
         android:layout_marginTop="@dimen/loginFromImage"
         android:textSize="@dimen/edittextFontSize"
+        android:background="@drawable/roundedview"
         />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password"
         android:layout_width="@dimen/edittextWidth"
         android:layout_height="@dimen/edittextHeight"
@@ -41,7 +42,10 @@
         android:textSize="@dimen/edittextFontSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nickname" />
+        app:layout_constraintTop_toBottomOf="@+id/nickname"
+        android:theme="@style/Theme.MessengerApp"
+        android:background="@drawable/roundedview"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signinButton"
