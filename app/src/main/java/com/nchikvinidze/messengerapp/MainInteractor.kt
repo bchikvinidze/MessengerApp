@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.google.firebase.storage.ktx.storageMetadata
 import java.io.ByteArrayOutputStream
 
 class MainInteractor(val presenter: IMainPresenter) {
@@ -28,7 +29,10 @@ class MainInteractor(val presenter: IMainPresenter) {
             usersRef.child(it).setValue(User(nick,psw,prof))
         }
         //image upload to storage
-        val imgRef = storage.getReference("users")
+        var metadata = storageMetadata {
+            contentType = ""
+        }
+        val imgRef = storage.getReference(nick)
         val bitmap = (img as BitmapDrawable).bitmap
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)

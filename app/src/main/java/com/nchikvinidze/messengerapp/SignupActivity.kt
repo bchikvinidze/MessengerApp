@@ -9,7 +9,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class MainActivity : AppCompatActivity(), IMainView {
+class SignupActivity : AppCompatActivity(), IMainView {
 
     //views to be inizialized later
     lateinit var nicknameField : TextInputEditText
@@ -39,12 +39,14 @@ class MainActivity : AppCompatActivity(), IMainView {
         //}
 
 
-        signUpButton.setOnClickListener {
+        signUpButton.setOnClickListener { // aq todo: ukve arsebuli nicknames daregistrirebaze toast gamogdeba
             var nick = nicknameField.text.toString()
-            var psw = passwordField.text.toString() //amas schirdeba rom rgolebi gamochndes asoebis nacvlad.
-            var prof = whatIdoField.text.toString()
-            var image = img.drawable
-            presenter.saveNewUser(nick, psw, prof, image)
+            if(!nick.contains("\n")) { // nicknamebshi newline modi ar gvinda
+                var psw = passwordField.text.toString() //amas schirdeba rom rgolebi gamochndes asoebis nacvlad.
+                var prof = whatIdoField.text.toString()
+                var image = img.drawable
+                presenter.saveNewUser(nick, psw, prof, image)
+            }
         }
     }
 }
