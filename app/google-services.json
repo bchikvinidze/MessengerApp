@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "554677032770",
-    "project_id": "messengerapp-6addd",
-    "storage_bucket": "messengerapp-6addd.appspot.com"
+    "project_number": "419740277011",
+    "firebase_url": "https://messengerapp-a6368-default-rtdb.firebaseio.com",
+    "project_id": "messengerapp-a6368",
+    "storage_bucket": "messengerapp-a6368.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:554677032770:android:a712cf22ac1eef709f1adb",
+        "mobilesdk_app_id": "1:419740277011:android:3abe90e81db2364c4422e6",
         "android_client_info": {
           "package_name": "com.nchikvinidze.messengerapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "554677032770-nl2ipl852884ihe8o74unrh2s3n43tug.apps.googleusercontent.com",
+          "client_id": "419740277011-pfcgrpatlp500jvc94u9pap8h31icbfu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAp5MnHasFIatZHvXUWaM05fOTmaNVvm1M"
+          "current_key": "AIzaSyCZqAsH6tisGTUmVivX2BnpxKAVDCBkr6M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "554677032770-nl2ipl852884ihe8o74unrh2s3n43tug.apps.googleusercontent.com",
+              "client_id": "419740277011-pfcgrpatlp500jvc94u9pap8h31icbfu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
