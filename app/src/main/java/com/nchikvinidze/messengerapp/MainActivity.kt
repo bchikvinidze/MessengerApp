@@ -1,5 +1,6 @@
 package com.nchikvinidze.messengerapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -8,6 +9,8 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.nchikvinidze.messengerapp.Home.HomeActivity
+import java.io.Serializable
 
 class MainActivity : AppCompatActivity(), IMainView {
 
@@ -45,6 +48,8 @@ class MainActivity : AppCompatActivity(), IMainView {
             var prof = whatIdoField.text.toString()
             var image = img.drawable
             presenter.saveNewUser(nick, psw, prof, image)
+            var addIntent = Intent(this, HomeActivity::class.java)
+            startActivity(addIntent)
         }
     }
 }
