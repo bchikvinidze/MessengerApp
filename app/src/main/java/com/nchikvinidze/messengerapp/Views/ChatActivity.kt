@@ -37,5 +37,13 @@ class ChatActivity : AppCompatActivity(){
         chatrvAdapter.notifyDataSetChanged()
         chatrvAdapter.list.add(m4)
         chatrvAdapter.notifyDataSetChanged()
+        chatrvAdapter.list.add(m4)
+        chatrvAdapter.notifyDataSetChanged()
+        chatrvAdapter.list.add(m4)
+        chatrvAdapter.notifyDataSetChanged()
+        chatrvAdapter.list.add(m4)
+        chatrvAdapter.notifyDataSetChanged()
+        chatrvAdapter.list.add(m4)
+        chatrvAdapter.notifyDataSetChanged()
     }
 }
