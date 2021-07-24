@@ -82,50 +82,58 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/chatScrollView"
-        app:layout_constraintBottom_toTopOf="@+id/chatbox_layout"
+        app:layout_constraintBottom_toTopOf="@+id/chatboxLayout"
         app:layout_constraintTop_toBottomOf="@+id/chatappbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/chatRv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
         </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.core.widget.NestedScrollView>
 
     <RelativeLayout
-        android:id="@+id/chatbox_layout"
+        android:id="@+id/chatboxLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/roundedview"
+        android:backgroundTint="@color/light_grey"
+        android:layout_marginRight="@dimen/chaticonsfromscreen"
+        android:layout_marginBottom="@dimen/chaticonsfromscreen"
+        android:layout_marginLeft="@dimen/chaticonsfromscreen">
 
 
-        <!--   <EditText
-              android:layout_marginStart="16dp"
-              android:id="@+id/edit_gchat_message"
+        <EditText
+              android:id="@+id/editMessage"
+              android:layout_marginStart="@dimen/chaticonsfromscreen"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_centerVertical="true"
-              android:layout_toStartOf="@+id/button_gchat_send"
+              android:layout_toStartOf="@+id/sendButton"
               android:background="@android:color/transparent"
-              android:hint="Enter Message"
+              android:hint="Message"
               android:inputType="text"
-              android:maxLines="6"
+              android:maxLines="3"
               android:layout_marginLeft="16dp"
-              android:layout_toLeftOf="@+id/button_gchat_send" />
+              android:layout_toLeftOf="@+id/sendButton" />
 
-         <Button
-              android:id="@+id/button_gchat_send"
-              android:layout_width="64dp"
-              android:layout_height="48dp"
+         <ImageButton
+              android:id="@+id/sendButton"
+              android:layout_width="@dimen/sendbuttondimen"
+              android:layout_height="@dimen/sendbuttondimen"
               android:layout_alignParentEnd="true"
               android:background="?attr/selectableItemBackground"
               android:text="Send"
-              android:textColor="@color/colorPrimary" /> -->
+              android:layout_alignParentRight="true"
+              app:srcCompat="@drawable/ic_send"/>
 
     </RelativeLayout>
 

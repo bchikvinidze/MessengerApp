@@ -9,6 +9,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.storage.ktx.storageMetadata
 import com.nchikvinidze.messengerapp.data.User
+import com.nchikvinidze.messengerapp.presenters.IMainPresenter
 import java.io.ByteArrayOutputStream
 
 class MainInteractor(val presenter: IMainPresenter) {

@@ -1,13 +1,12 @@
-package com.nchikvinidze.messengerapp
+package com.nchikvinidze.messengerapp.Views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.EditText
 import android.widget.ImageView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.nchikvinidze.messengerapp.presenters.MainPresenter
+import com.nchikvinidze.messengerapp.R
 
 class SignupActivity : AppCompatActivity(), IMainView {
 
