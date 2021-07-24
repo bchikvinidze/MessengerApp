@@ -28,4 +28,6 @@
     <dimen name="chatmessagesz">16sp</dimen>
     <dimen name="messagePaddingupdown">12dp</dimen>
     <dimen name="messagePaddingsides">16dp</dimen>
+    <dimen name="messageroundrad">16dp</dimen>
+    <dimen name="chatboxwidth">200dp</dimen>
 </resources>

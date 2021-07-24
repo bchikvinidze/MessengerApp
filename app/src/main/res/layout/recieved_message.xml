@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recievedMessage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/chaticonsfromscreen">
+
+    <TextView
+        android:id="@+id/mymessagetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/chaticonsfromscreen"
+        android:background="@drawable/recieved_chatbox_background"
+        android:maxWidth="@dimen/chatboxwidth"
+        android:paddingLeft="@dimen/messagePaddingsides"
+        android:paddingTop="@dimen/messagePaddingupdown"
+        android:paddingRight="@dimen/messagePaddingsides"
+        android:paddingBottom="@dimen/messagePaddingupdown"
+        android:text="This is a Message"
+        android:textColor="@color/white"
+        android:textSize="@dimen/chatmessagesz"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/message_timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22:22"
+        android:textColor="@color/light_grey"
+        android:textSize="@dimen/chattimestampsz"
+        app:layout_constraintBottom_toBottomOf="@+id/mymessagetext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mymessagetext"
+        app:layout_constraintTop_toTopOf="@+id/mymessagetext" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
