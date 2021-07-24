@@ -35,9 +35,11 @@ class SignupInteractor(val presenter: ISignupPresenter) {
 
     fun userExists(nick : String, psw : String, prof: String, img : Drawable, usersRef : DatabaseReference){
         usersRef.child("users").child(nick).get().addOnSuccessListener {
-            presenter.notifyUserExists()
-        }.addOnFailureListener{
-            insertNewUser(nick, psw, prof, img, usersRef)
+            if(it.exists()){
+                presenter.notifyUserExists()
+            } else {
+                insertNewUser(nick, psw, prof, img, usersRef)
+            }
         }
     }
 

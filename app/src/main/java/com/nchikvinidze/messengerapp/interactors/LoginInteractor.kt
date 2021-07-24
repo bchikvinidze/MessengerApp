@@ -12,4 +12,5 @@ class LoginInteractor(val presenter: ILoginPresenter)  {
     val auth = Firebase.auth
 
 
+
 }

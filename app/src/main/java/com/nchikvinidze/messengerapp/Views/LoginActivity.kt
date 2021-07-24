@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         presenter = LoginPresenter(this)
         //set listeners
         signinButton.setOnClickListener {
-
+            presenter.signInAttempt(nicknameField.text.toString(), passwordField.text.toString())
         }
         signupButton.setOnClickListener {
             var intent = Intent(this, SignupActivity::class.java)

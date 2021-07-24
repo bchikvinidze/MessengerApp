@@ -3,6 +3,7 @@ package com.nchikvinidze.messengerapp.Views
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.material.button.MaterialButton
@@ -12,6 +13,10 @@ import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.presenters.SignupPresenter
 
 class SignupActivity : AppCompatActivity(), ISignupView {
+
+    companion object{
+        val imagePicker = 100
+    }
 
     //views to be inizialized later
     lateinit var nicknameField : TextInputEditText
@@ -34,7 +39,8 @@ class SignupActivity : AppCompatActivity(), ISignupView {
         presenter = SignupPresenter(this)
 
         img.setOnClickListener {
-
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, imagePicker)
         }
 
         signUpButton.setOnClickListener {
@@ -45,6 +51,14 @@ class SignupActivity : AppCompatActivity(), ISignupView {
                 var image = img.drawable
                 presenter.saveNewUser(nick, psw, prof, image)
             }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == imagePicker) {
+            var imageUri = data?.data
+            img.setImageURI(imageUri)
         }
     }
 
