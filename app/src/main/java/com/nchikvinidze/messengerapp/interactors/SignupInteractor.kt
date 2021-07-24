@@ -24,9 +24,7 @@ class SignupInteractor(val presenter: ISignupPresenter) {
     val auth = Firebase.auth
 
     fun newUserToDb(nick : String, psw : String, prof: String, img : Drawable){
-        if(auth.currentUser == null){
-            auth.signInAnonymously()
-        }
+        if(auth.currentUser == null) auth.signInAnonymously()
         val usersRef = database.getReference("users")
 
         //check if user exists

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.nchikvinidze.messengerapp.presenters.LoginPresenter
@@ -38,5 +39,15 @@ class LoginActivity : AppCompatActivity(), ILoginView {
             var intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun notifyIncorrectCredentials() {
+        Toast.makeText(this, "Incorrect credentials. Try again.", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun moveToHome(nick : String, psw : String) {
+        //TODO axali intent home-ze gadasasvlelad.
+        Toast.makeText(this, "aq intenti chavamatot", Toast.LENGTH_SHORT).show()
+
     }
 }
