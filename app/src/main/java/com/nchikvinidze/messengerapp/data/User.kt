@@ -1,4 +1,4 @@
-package com.nchikvinidze.messengerapp
+package com.nchikvinidze.messengerapp.data
 
 import android.graphics.drawable.Drawable
 

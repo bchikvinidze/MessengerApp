@@ -13,9 +13,9 @@ class ChatActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chatpage)
-        chatrv = findViewById(R.id.chatRv)
-        chatrvAdapter = ChatItemsAdapter()
-        chatrv.adapter = chatrvAdapter
+        //chatrv = findViewById(R.id.chatRv)
+        //chatrvAdapter = ChatItemsAdapter()
+        //chatrv.adapter = chatrvAdapter
 
     }
 }

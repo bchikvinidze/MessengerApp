@@ -91,9 +91,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/chatRv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="@+id/chatScrollView"
-            app:layout_constraintTop_toTopOf="@+id/chatScrollView">
+            android:layout_height="match_parent">
         </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.core.widget.NestedScrollView>
@@ -106,28 +104,28 @@
         app:layout_constraintStart_toStartOf="parent">
 
 
-        <EditText
-            android:layout_marginStart="16dp"
-            android:id="@+id/edit_gchat_message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/button_gchat_send"
-            android:background="@android:color/transparent"
-            android:hint="Enter Message"
-            android:inputType="text"
-            android:maxLines="6"
-            android:layout_marginLeft="16dp"
-            android:layout_toLeftOf="@+id/button_gchat_send" />
+        <!--   <EditText
+              android:layout_marginStart="16dp"
+              android:id="@+id/edit_gchat_message"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_centerVertical="true"
+              android:layout_toStartOf="@+id/button_gchat_send"
+              android:background="@android:color/transparent"
+              android:hint="Enter Message"
+              android:inputType="text"
+              android:maxLines="6"
+              android:layout_marginLeft="16dp"
+              android:layout_toLeftOf="@+id/button_gchat_send" />
 
-        <Button
-            android:id="@+id/button_gchat_send"
-            android:layout_width="64dp"
-            android:layout_height="48dp"
-            android:layout_alignParentEnd="true"
-            android:background="?attr/selectableItemBackground"
-            android:text="Send"
-            android:textColor="@color/colorPrimary" />
+         <Button
+              android:id="@+id/button_gchat_send"
+              android:layout_width="64dp"
+              android:layout_height="48dp"
+              android:layout_alignParentEnd="true"
+              android:background="?attr/selectableItemBackground"
+              android:text="Send"
+              android:textColor="@color/colorPrimary" /> -->
 
     </RelativeLayout>
 

@@ -3,15 +3,12 @@ package com.nchikvinidze.messengerapp
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.widget.Toast
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.storage.ktx.storageMetadata
+import com.nchikvinidze.messengerapp.data.User
 import java.io.ByteArrayOutputStream
 
 class MainInteractor(val presenter: IMainPresenter) {

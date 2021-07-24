@@ -4,8 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.nchikvinidze.messengerapp.data.MessageItem
 
 class ChatItemsAdapter() : RecyclerView.Adapter<ChatItemViewHolder>()  {
+
+    var list = ArrayList<MessageItem>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatItemViewHolder {
         TODO("Not yet implemented")
     }
@@ -15,7 +19,7 @@ class ChatItemsAdapter() : RecyclerView.Adapter<ChatItemViewHolder>()  {
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return list.size
     }
 
 }
