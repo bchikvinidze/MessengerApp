@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/searchpageLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/chatappbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/chatappbar"
+        android:fitsSystemWindows="true"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/chat_collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            android:fitsSystemWindows="true">
+
+            <LinearLayout
+                android:id="@+id/topinfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top|start"
+                app:layout_collapseMode="parallax"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/chaticonsfromscreen"
+                android:layout_marginTop="@dimen/chaticonsfromscreen"
+                android:layout_marginRight="@dimen/chaticonsfromscreen">
+
+                <ImageButton
+                    android:id="@+id/backButton"
+                    android:layout_width="@dimen/chatbackdimen"
+                    android:layout_height="@dimen/chatbackdimen"
+                    android:background="@drawable/ic_back"
+                />
+
+                <LinearLayout
+                    android:id="@+id/nameandpic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/chaticonsfromscreen">
+
+                    <TextView
+                        android:id="@+id/nameSurname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/chatbackdimen"
+                        android:text="Placeholder Text"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/namesurnamesz"
+                        android:layout_weight="1">
+                    </TextView>
+                    
+                    <ImageButton
+                        android:id="@+id/profilePicture"
+                        android:layout_width="@dimen/chatprofielpicdimen"
+                        android:layout_height="@dimen/chatprofielpicdimen"
+                        android:src="@drawable/avatar_image_placeholder"
+                        android:scaleType="centerInside"
+                        >
+                    </ImageButton>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/profession"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/chatbackdimen"
+                    android:text="Placeholder Text"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/professionsz"
+                    android:layout_marginTop="@dimen/chaticonsfromscreen">
+                </TextView>
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/chatScrollView"
+        app:layout_constraintBottom_toTopOf="@+id/chatbox_layout"
+        app:layout_constraintTop_toBottomOf="@+id/chatappbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatRv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="@+id/chatScrollView"
+            app:layout_constraintTop_toTopOf="@+id/chatScrollView">
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:id="@+id/chatbox_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <EditText
+            android:layout_marginStart="16dp"
+            android:id="@+id/edit_gchat_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/button_gchat_send"
+            android:background="@android:color/transparent"
+            android:hint="Enter Message"
+            android:inputType="text"
+            android:maxLines="6"
+            android:layout_marginLeft="16dp"
+            android:layout_toLeftOf="@+id/button_gchat_send" />
+
+        <Button
+            android:id="@+id/button_gchat_send"
+            android:layout_width="64dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:background="?attr/selectableItemBackground"
+            android:text="Send"
+            android:textColor="@color/colorPrimary" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
