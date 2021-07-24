@@ -9,13 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MessengerApp">
-        <activity android:name=".Views.ChatActivity">
+        <activity android:name=".Views.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Views.SignupActivity"></activity>
+        <activity android:name=".Views.ChatActivity"></activity>
     </application>
 
 </manifest>

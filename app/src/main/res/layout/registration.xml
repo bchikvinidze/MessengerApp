@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nickname"
         android:theme="@style/Theme.MessengerApp"
         android:background="@drawable/roundedview"
-        />
+        android:inputType="textPassword"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/profession"
