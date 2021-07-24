@@ -6,16 +6,16 @@ import android.os.Bundle
 import android.widget.ImageView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.nchikvinidze.messengerapp.presenters.MainPresenter
+import com.nchikvinidze.messengerapp.presenters.LoginPresenter
 import com.nchikvinidze.messengerapp.R
 
-class LoginActivity : AppCompatActivity(), IMainView {
+class LoginActivity : AppCompatActivity(), ILoginView {
 
     //views to be initialized later
     lateinit var nicknameField : TextInputEditText
     lateinit var passwordField : TextInputEditText
     lateinit var img: ImageView
-    lateinit var presenter: MainPresenter
+    lateinit var presenter: LoginPresenter
     lateinit var signinButton : MaterialButton
     lateinit var signupButton : MaterialButton
 
@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity(), IMainView {
         img = findViewById(R.id.defaultImage)
         signinButton = findViewById(R.id.signinButton)
         signupButton = findViewById(R.id.signupButton)
-        presenter = MainPresenter(this)
+        presenter = LoginPresenter(this)
         //set listeners
         signinButton.setOnClickListener {
 

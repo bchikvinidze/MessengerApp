@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.widget.ImageView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.nchikvinidze.messengerapp.presenters.MainPresenter
+import com.nchikvinidze.messengerapp.presenters.LoginPresenter
 import com.nchikvinidze.messengerapp.R
 
-class SignupActivity : AppCompatActivity(), IMainView {
+class SignupActivity : AppCompatActivity(), ILoginView {
 
     //views to be inizialized later
     lateinit var nicknameField : TextInputEditText
@@ -17,7 +17,7 @@ class SignupActivity : AppCompatActivity(), IMainView {
     lateinit var img: ImageView
     //lateinit var signInButton : MaterialButton
     lateinit var signUpButton : MaterialButton
-    lateinit var presenter: MainPresenter
+    lateinit var presenter: LoginPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,7 @@ class SignupActivity : AppCompatActivity(), IMainView {
         img = findViewById(R.id.defaultImage)
         //signInButton = findViewById(R.id.signinButton)
         signUpButton = findViewById(R.id.signupButton)
-        presenter = MainPresenter(this)
+        presenter = LoginPresenter(this)
         //set listeners
         //signInButton.setOnClickListener {
 

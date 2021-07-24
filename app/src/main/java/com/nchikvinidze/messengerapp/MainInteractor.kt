@@ -9,10 +9,10 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.storage.ktx.storageMetadata
 import com.nchikvinidze.messengerapp.data.User
-import com.nchikvinidze.messengerapp.presenters.IMainPresenter
+import com.nchikvinidze.messengerapp.presenters.ILoginPresenter
 import java.io.ByteArrayOutputStream
 
-class MainInteractor(val presenter: IMainPresenter) {
+class MainInteractor(val presenter: ILoginPresenter) {
     val database = Firebase.database
     val storage = Firebase.storage
     val auth = Firebase.auth
