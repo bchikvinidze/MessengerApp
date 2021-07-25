@@ -14,7 +14,6 @@ import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.Views.Interfaces.IChatView
 import com.nchikvinidze.messengerapp.data.MessageItem
 import com.nchikvinidze.messengerapp.presenters.ChatPresenter
-import com.nchikvinidze.messengerapp.presenters.LoginPresenter
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,7 +41,7 @@ class ChatActivity : AppCompatActivity(), IChatView{
         chatrv.adapter = chatrvAdapter
         chatrv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL ,false)
         presenter = ChatPresenter(this, sharedPref)
-        nick = intent.getStringExtra("username").toString()
+        nick = intent.getStringExtra("nickname").toString()
         otherNick = intent.getStringExtra("recipient").toString()
         //aq mgoni load screen daschirdeba rom chavamatot
         presenter.showMessageHistory(nick, otherNick)
@@ -61,11 +60,11 @@ class ChatActivity : AppCompatActivity(), IChatView{
             var cal = Calendar.getInstance()
             var msg = MessageItem(cal.timeInMillis, time,true, nick, otherNick, editMessage.text.toString())
             presenter.saveSentMessage(msg)
-            displaySentMessage(msg)
+            displayMessage(msg)
         }
     }
 
-    fun displaySentMessage(msg: MessageItem){
+    override fun displayMessage(msg: MessageItem){
         chatrvAdapter.list.add(msg)
         chatrvAdapter.notifyDataSetChanged()
         chatrv.scrollToPosition(chatrvAdapter.itemCount - 1)

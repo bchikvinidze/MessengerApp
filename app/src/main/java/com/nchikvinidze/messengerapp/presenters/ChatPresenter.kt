@@ -20,4 +20,8 @@ class ChatPresenter(var view: IChatView, sharedPref : SharedPreferences) : IChat
     override fun showMessageHistory(nick: String, otherNick: String) {
         interactor.downloadMessages(nick, otherNick)
     }
+
+    override fun displayDownloadedMessage(msg: MessageItem) {
+        view.displayMessage(msg)
+    }
 }

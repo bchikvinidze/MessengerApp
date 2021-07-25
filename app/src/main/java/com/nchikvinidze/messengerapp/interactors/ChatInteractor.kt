@@ -3,6 +3,8 @@ package com.nchikvinidze.messengerapp.interactors
 import android.content.SharedPreferences
 import android.util.Log
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -15,15 +17,6 @@ class ChatInteractor(val presenter: IChatPresenter, sharedPref : SharedPreferenc
     val auth = Firebase.auth
     var sharedPreferences = sharedPref
 
-   /* fun curUser(){
-        if(sharedPreferences.getBoolean(LoginInteractor.LOGGED_ON, false)){
-            var nickname = sharedPreferences.getString(LoginInteractor.LOGGED_NICKNAME, "Error").toString()
-            presenter.setCurrentNickname(nickname)
-        } else {
-            Log.e("user error", "does not exist")
-        }
-    } */
-
     fun uploadToDB(msg : MessageItem){
         if(auth.currentUser == null) auth.signInAnonymously()
         //todo upload message to db
@@ -31,13 +24,15 @@ class ChatInteractor(val presenter: IChatPresenter, sharedPref : SharedPreferenc
 
     fun downloadMessages(nick : String, otherNick : String){
         if(auth.currentUser == null) auth.signInAnonymously()
-        val usersRef = database.getReference("messages")
-        usersRef.child("nick").get().addOnSuccessListener {
+        val messagesRef = database.getReference("messages2")
+        var childName = "$nick-$otherNick"
+        /*messagesRef.child(childName).get().addOnSuccessListener {
             if(it.exists()){
+                for(child in it.children){
+                    //val sent = true
 
-            } else {
-
+                }
             }
-        }
+        }*/
     }
 }

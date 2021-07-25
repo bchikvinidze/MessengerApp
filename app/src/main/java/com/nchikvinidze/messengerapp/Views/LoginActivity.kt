@@ -47,6 +47,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
             var intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
+
     }
 
     override fun notifyIncorrectCredentials() {
