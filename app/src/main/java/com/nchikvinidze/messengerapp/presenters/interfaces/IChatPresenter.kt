@@ -1,6 +1,8 @@
 package com.nchikvinidze.messengerapp.presenters.interfaces
 
+import com.nchikvinidze.messengerapp.data.MessageItem
+
 interface IChatPresenter{
-    fun setCurrentNickname(nick : String)
-    fun saveSentMessage()
+    fun saveSentMessage(msg : MessageItem)
+    fun showMessageHistory(nick : String, otherNick : String)
 }

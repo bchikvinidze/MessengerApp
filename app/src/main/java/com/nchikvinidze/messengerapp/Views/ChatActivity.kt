@@ -27,7 +27,8 @@ class ChatActivity : AppCompatActivity(), IChatView{
     lateinit var sharedPref : SharedPreferences
     lateinit var presenter : ChatPresenter
     lateinit var chatappbar : AppBarLayout
-    override lateinit var nick: String
+    lateinit var nick: String
+    lateinit var otherNick: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +43,9 @@ class ChatActivity : AppCompatActivity(), IChatView{
         chatrv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL ,false)
         presenter = ChatPresenter(this, sharedPref)
         nick = intent.getStringExtra("username").toString()
+        otherNick = intent.getStringExtra("recipient").toString()
         //aq mgoni load screen daschirdeba rom chavamatot
-        //presenter.getCurrentNickname()
+        presenter.showMessageHistory(nick, otherNick)
 
         editMessage.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
@@ -54,15 +56,16 @@ class ChatActivity : AppCompatActivity(), IChatView{
         }
 
         sendButton.setOnClickListener {
-            presenter.saveSentMessage()
-            displaySentMessage()
+            val sdf = SimpleDateFormat("HH:mm")
+            val time = sdf.format(Date()).toString()
+            var cal = Calendar.getInstance()
+            var msg = MessageItem(cal.timeInMillis, time,true, nick, otherNick, editMessage.text.toString())
+            presenter.saveSentMessage(msg)
+            displaySentMessage(msg)
         }
     }
 
-    fun displaySentMessage(){
-        val sdf = SimpleDateFormat("HH:mm")
-        val time = sdf.format(Date()).toString()
-        var msg = MessageItem(time, true, nick, editMessage.text.toString())
+    fun displaySentMessage(msg: MessageItem){
         chatrvAdapter.list.add(msg)
         chatrvAdapter.notifyDataSetChanged()
         chatrv.scrollToPosition(chatrvAdapter.itemCount - 1)

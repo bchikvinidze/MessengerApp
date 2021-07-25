@@ -59,6 +59,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         //droebit chatze gadasvlas vizav
         var intent = Intent(this, ChatActivity::class.java)
         intent.putExtra("nickname", nick)
+        intent.putExtra("recipient", "babuca")
         startActivity(intent)
     }
 }
