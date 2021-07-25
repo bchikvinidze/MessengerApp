@@ -8,12 +8,15 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.AppBarLayout
 import com.nchikvinidze.messengerapp.ChatItemsAdapter
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.Views.Interfaces.IChatView
 import com.nchikvinidze.messengerapp.data.MessageItem
 import com.nchikvinidze.messengerapp.presenters.ChatPresenter
 import com.nchikvinidze.messengerapp.presenters.LoginPresenter
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ChatActivity : AppCompatActivity(), IChatView{
 
@@ -23,6 +26,8 @@ class ChatActivity : AppCompatActivity(), IChatView{
     lateinit var sendButton : ImageButton
     lateinit var sharedPref : SharedPreferences
     lateinit var presenter : ChatPresenter
+    lateinit var chatappbar : AppBarLayout
+    override lateinit var nick: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,43 +35,37 @@ class ChatActivity : AppCompatActivity(), IChatView{
         chatrv = findViewById(R.id.chatRv)
         editMessage = findViewById(R.id.editMessage)
         sendButton = findViewById(R.id.sendButton)
+        chatappbar = findViewById(R.id.chatappbar)
         sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
         chatrvAdapter = ChatItemsAdapter()
         chatrv.adapter = chatrvAdapter
         chatrv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL ,false)
         presenter = ChatPresenter(this, sharedPref)
+        nick = intent.getStringExtra("username").toString()
+        //aq mgoni load screen daschirdeba rom chavamatot
+        //presenter.getCurrentNickname()
 
-        sendButton.setOnClickListener {
-            //save to firebase
-            //TODO
-            //display
-            //chatrvAdapter.list.add(MessageItem(time, true, nick, editMessage.text))
-            chatrvAdapter.notifyDataSetChanged()
+        editMessage.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                chatappbar.setExpanded(false)
+            } else {
+                chatappbar.setExpanded(true)
+            }
         }
 
-        //UIs satesto mesijebi
-        /*var m1 = MessageItem("22:10", true, "bubu", "vaime ra gveshveleba")
-        var m2 = MessageItem("22:10", true, "bubu", "vaime ra gveshvelebaa")
-        var m3 = MessageItem("22:10", false, "bubu", "vaime ra gveshvelebaaa")
-        var m4 = MessageItem("22:10", true, "bubu", "vaime ra gveshvelebaaaa jfdsidf ujofijsodijf djfosijdoifj fiodjofijsods dijifjdijf fdjfidddddddddddddddddddddd")
+        sendButton.setOnClickListener {
+            presenter.saveSentMessage()
+            displaySentMessage()
+        }
+    }
 
-        chatrvAdapter.list.add(m3)
+    fun displaySentMessage(){
+        val sdf = SimpleDateFormat("HH:mm")
+        val time = sdf.format(Date()).toString()
+        var msg = MessageItem(time, true, nick, editMessage.text.toString())
+        chatrvAdapter.list.add(msg)
         chatrvAdapter.notifyDataSetChanged()
-        chatrvAdapter.list.add(m2)
-        chatrvAdapter.notifyDataSetChanged()
-        chatrvAdapter.list.add(m3)
-        chatrvAdapter.notifyDataSetChanged()
-        chatrvAdapter.list.add(m4)
-        chatrvAdapter.notifyDataSetChanged()
-        chatrvAdapter.list.add(m4)
-        chatrvAdapter.notifyDataSetChanged()
-        chatrvAdapter.list.add(m4)
-        chatrvAdapter.notifyDataSetChanged()
-        chatrvAdapter.list.add(m4)
-        chatrvAdapter.notifyDataSetChanged()
-        chatrvAdapter.list.add(m4)
-        chatrvAdapter.notifyDataSetChanged()
-        chatrvAdapter.list.add(m4)
-        chatrvAdapter.notifyDataSetChanged()*/
+        chatrv.scrollToPosition(chatrvAdapter.itemCount - 1)
+        editMessage.setText("")
     }
 }

@@ -56,6 +56,9 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     override fun moveToHome(nick : String) {
         //TODO axali intent home-ze gadasasvlelad.
         Toast.makeText(this, "aq intenti chavamatot", Toast.LENGTH_SHORT).show()
-
+        //droebit chatze gadasvlas vizav
+        var intent = Intent(this, ChatActivity::class.java)
+        intent.putExtra("nickname", nick)
+        startActivity(intent)
     }
 }

@@ -40,8 +40,7 @@ class LoginInteractor(val presenter: ILoginPresenter, sharedPref : SharedPrefere
 
     fun loggedInCheck(){
         if(sharedPreferences.getBoolean(LOGGED_ON, false)){
-            var nickname = sharedPreferences.getString(LOGGED_NICKNAME, "Error")
-            if(nickname == null) nickname = ""
+            var nickname = sharedPreferences.getString(LOGGED_NICKNAME, "Error").toString()
             presenter.notifyLoggedIn(nickname)
         }
     }
