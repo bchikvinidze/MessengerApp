@@ -24,4 +24,10 @@ class ChatPresenter(var view: IChatView, sharedPref : SharedPreferences) : IChat
     override fun displayDownloadedMessage(msg: MessageItem) {
         view.displayMessage(msg)
     }
+
+    override fun displayDownloadedMessageList(lst: ArrayList<MessageItem>) {
+        for(elem in lst){
+            view.displayMessage(elem)
+        }
+    }
 }
