@@ -11,6 +11,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.nchikvinidze.messengerapp.presenters.LoginPresenter
 import com.nchikvinidze.messengerapp.R
+import com.nchikvinidze.messengerapp.Views.Interfaces.ILoginView
 
 class LoginActivity : AppCompatActivity(), ILoginView {
 

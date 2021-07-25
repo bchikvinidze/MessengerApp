@@ -1,8 +1,9 @@
 package com.nchikvinidze.messengerapp.presenters
 
 import android.content.SharedPreferences
-import com.nchikvinidze.messengerapp.Views.ILoginView
+import com.nchikvinidze.messengerapp.Views.Interfaces.ILoginView
 import com.nchikvinidze.messengerapp.interactors.LoginInteractor
+import com.nchikvinidze.messengerapp.presenters.interfaces.ILoginPresenter
 
 class LoginPresenter(var view: ILoginView, sharedPref : SharedPreferences): ILoginPresenter {
     private val interactor = LoginInteractor(this, sharedPref)

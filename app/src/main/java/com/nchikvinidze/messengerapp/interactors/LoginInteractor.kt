@@ -1,13 +1,12 @@
 package com.nchikvinidze.messengerapp.interactors
 
 import android.content.SharedPreferences
-import android.graphics.drawable.Drawable
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.nchikvinidze.messengerapp.presenters.ILoginPresenter
+import com.nchikvinidze.messengerapp.presenters.interfaces.ILoginPresenter
 
 class LoginInteractor(val presenter: ILoginPresenter, sharedPref : SharedPreferences)  {
     val database = Firebase.database

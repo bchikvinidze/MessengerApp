@@ -3,19 +3,14 @@ package com.nchikvinidze.messengerapp.interactors
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.util.Log
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.storage.ktx.storageMetadata
 import com.nchikvinidze.messengerapp.data.User
-import com.nchikvinidze.messengerapp.presenters.ILoginPresenter
-import com.nchikvinidze.messengerapp.presenters.ISignupPresenter
+import com.nchikvinidze.messengerapp.presenters.interfaces.ISignupPresenter
 import java.io.ByteArrayOutputStream
 
 class SignupInteractor(val presenter: ISignupPresenter) {

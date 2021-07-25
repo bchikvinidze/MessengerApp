@@ -2,7 +2,8 @@ package com.nchikvinidze.messengerapp.presenters
 
 import android.graphics.drawable.Drawable
 import com.nchikvinidze.messengerapp.interactors.SignupInteractor
-import com.nchikvinidze.messengerapp.Views.ISignupView
+import com.nchikvinidze.messengerapp.Views.Interfaces.ISignupView
+import com.nchikvinidze.messengerapp.presenters.interfaces.ISignupPresenter
 
 class SignupPresenter(var view: ISignupView): ISignupPresenter {
     private val interactor = SignupInteractor(this)
