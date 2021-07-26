@@ -3,16 +3,25 @@ package com.nchikvinidze.messengerapp.Views
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.database.FirebaseListAdapter
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.appbar.AppBarLayout
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.nchikvinidze.messengerapp.ChatItemViewHolder
 import com.nchikvinidze.messengerapp.ChatItemsAdapter
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.Views.Interfaces.IChatView
 import com.nchikvinidze.messengerapp.data.MessageItem
+import com.nchikvinidze.messengerapp.interactors.ChatInteractor
 import com.nchikvinidze.messengerapp.presenters.ChatPresenter
 import java.text.SimpleDateFormat
 import java.util.*
@@ -28,6 +37,7 @@ class ChatActivity : AppCompatActivity(), IChatView{
     lateinit var chatappbar : AppBarLayout
     lateinit var nick: String
     lateinit var otherNick: String
+    //maybe Ill move this someplace else later....
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +47,18 @@ class ChatActivity : AppCompatActivity(), IChatView{
         sendButton = findViewById(R.id.sendButton)
         chatappbar = findViewById(R.id.chatappbar)
         sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
-        chatrvAdapter = ChatItemsAdapter()
+        nick = intent.getStringExtra("nickname").toString()
+        otherNick = intent.getStringExtra("recipient").toString()
+
+        //IUshi ar undaiyos mara droebit davtoveb adapteris dasetvas
+        val options = FirebaseRecyclerOptions.Builder<MessageItem>()
+            .setQuery(Firebase.database.getReference(ChatInteractor.MESSAGES+"/$nick-$otherNick"), MessageItem::class.java)
+            .setLifecycleOwner(this)
+            .build()
+        chatrvAdapter = ChatItemsAdapter(options)
         chatrv.adapter = chatrvAdapter
         chatrv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL ,false)
         presenter = ChatPresenter(this, sharedPref)
-        nick = intent.getStringExtra("nickname").toString()
-        otherNick = intent.getStringExtra("recipient").toString()
         //aq mgoni load screen daschirdeba rom chavamatot
         presenter.showMessageHistory(nick, otherNick)
 
@@ -59,15 +75,31 @@ class ChatActivity : AppCompatActivity(), IChatView{
             val time = sdf.format(Date()).toString()
             var cal = Calendar.getInstance()
             var msg = MessageItem(cal.timeInMillis, time,true, nick, otherNick, editMessage.text.toString())
-            presenter.saveSentMessage(msg)
-            displayMessage(msg)
+            //chatrvAdapter.list.add(msg)
+            chatrvAdapter.notifyDataSetChanged()
+            presenter.saveSentMessage(msg) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            afterMessageDisplay()
         }
     }
 
     override fun displayMessage(msg: MessageItem){
-        chatrvAdapter.list.add(msg)
+        //chatrvAdapter.list.add(msg)
         chatrvAdapter.notifyDataSetChanged()
-        chatrv.scrollToPosition(chatrvAdapter.itemCount - 1)
+        afterMessageDisplay()
+    }
+
+    fun afterMessageDisplay(){
+        chatrv.scrollToPosition(chatrvAdapter.itemCount)
         editMessage.setText("")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        chatrvAdapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        chatrvAdapter.stopListening()
     }
 }

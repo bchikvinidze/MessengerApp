@@ -6,5 +6,5 @@ interface IChatPresenter{
     fun saveSentMessage(msg : MessageItem)
     fun showMessageHistory(nick : String, otherNick : String)
     fun displayDownloadedMessage(msg : MessageItem)
-    fun displayDownloadedMessageList(lst : ArrayList<MessageItem>)
+    fun displayDownloadedMessageList(lst : List<MessageItem>)
 }

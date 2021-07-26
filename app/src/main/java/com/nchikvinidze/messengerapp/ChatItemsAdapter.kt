@@ -5,16 +5,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.nchikvinidze.messengerapp.data.MessageItem
 
-class ChatItemsAdapter() : RecyclerView.Adapter<ChatItemViewHolder>()  {
+class ChatItemsAdapter(options : FirebaseRecyclerOptions<MessageItem>) : FirebaseRecyclerAdapter<MessageItem, ChatItemViewHolder>(options) {
     val VIEW_TYPE_SENT = 1
     val VIEW_TYPE_RECEIVED = 2
-    var list = ArrayList<MessageItem>()
+    //var list = ArrayList<MessageItem>()
 
     override fun getItemViewType(position: Int): Int {
-        var msg = list[position]
+        /*var msg = list[position]
         if(msg.sent) return VIEW_TYPE_SENT
+        return VIEW_TYPE_RECEIVED*/
+        if(getItem(position).sent) return VIEW_TYPE_SENT
         return VIEW_TYPE_RECEIVED
     }
 
@@ -30,13 +34,22 @@ class ChatItemsAdapter() : RecyclerView.Adapter<ChatItemViewHolder>()  {
         }
     }
 
-    override fun onBindViewHolder(holder: ChatItemViewHolder, position: Int) {
+    /*override fun onBindViewHolder(holder: ChatItemViewHolder, position: Int) {
         var msg = list[position]
         holder.bind(msg)
-    }
+    }*/
 
     override fun getItemCount(): Int {
-        return list.size
+        return super.getItemCount()
+    }
+
+    override fun onBindViewHolder(holder: ChatItemViewHolder, position: Int, model: MessageItem) {
+        //var msg = list[position]
+        holder.bind(model)
+    }
+
+    override fun getItem(position: Int): MessageItem {
+        return super.getItem(position)
     }
 
 }
@@ -47,6 +60,6 @@ class ChatItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(msg : MessageItem){
         msgText.text = msg.text
-        time.text = msg.timestamp
+        time.text = msg.time
     }
 }
