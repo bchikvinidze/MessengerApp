@@ -1,4 +1,4 @@
-package com.nchikvinidze.messengerapp.Views
+package com.nchikvinidze.messengerapp.Signup
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +9,7 @@ import android.widget.Toast
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.nchikvinidze.messengerapp.R
-import com.nchikvinidze.messengerapp.Views.Interfaces.ISignupView
-import com.nchikvinidze.messengerapp.presenters.SignupPresenter
+import com.nchikvinidze.messengerapp.Login.LoginActivity
 
 class SignupActivity : AppCompatActivity(), ISignupView {
 

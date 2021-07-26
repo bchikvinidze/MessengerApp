@@ -1,4 +1,4 @@
-package com.nchikvinidze.messengerapp.Views.Interfaces
+package com.nchikvinidze.messengerapp.Signup
 
 interface ISignupView {
     fun userExists()

@@ -1,4 +1,4 @@
-package com.nchikvinidze.messengerapp.Views.Interfaces
+package com.nchikvinidze.messengerapp.Login
 
 interface ILoginView {
     fun notifyIncorrectCredentials()

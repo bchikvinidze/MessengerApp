@@ -1,4 +1,4 @@
-package com.nchikvinidze.messengerapp.interactors
+package com.nchikvinidze.messengerapp.Chat
 
 import android.content.SharedPreferences
 import com.google.firebase.auth.ktx.auth
@@ -7,7 +7,6 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.nchikvinidze.messengerapp.data.MessageItem
-import com.nchikvinidze.messengerapp.presenters.interfaces.IChatPresenter
 
 class ChatInteractor(val presenter: IChatPresenter, sharedPref : SharedPreferences)   {
     val database = Firebase.database

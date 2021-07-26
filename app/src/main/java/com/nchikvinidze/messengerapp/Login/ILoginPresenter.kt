@@ -1,4 +1,4 @@
-package com.nchikvinidze.messengerapp.presenters.interfaces
+package com.nchikvinidze.messengerapp.Login
 
 interface ILoginPresenter {
     fun signInAttempt(nick : String, psw : String)

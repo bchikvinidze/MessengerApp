@@ -1,32 +1,24 @@
-package com.nchikvinidze.messengerapp.Views
+package com.nchikvinidze.messengerapp.Chat
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.database.FirebaseListAdapter
-import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.nchikvinidze.messengerapp.ChatItemViewHolder
 import com.nchikvinidze.messengerapp.ChatItemsAdapter
 import com.nchikvinidze.messengerapp.R
-import com.nchikvinidze.messengerapp.Views.Interfaces.IChatView
 import com.nchikvinidze.messengerapp.data.MessageItem
-import com.nchikvinidze.messengerapp.interactors.ChatInteractor
-import com.nchikvinidze.messengerapp.presenters.ChatPresenter
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ChatActivity : AppCompatActivity(), IChatView{
+class ChatActivity : AppCompatActivity(), IChatView {
 
     lateinit var chatrv : RecyclerView
     lateinit var chatrvAdapter : ChatItemsAdapter

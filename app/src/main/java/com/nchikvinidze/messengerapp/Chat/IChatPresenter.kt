@@ -1,4 +1,4 @@
-package com.nchikvinidze.messengerapp.presenters.interfaces
+package com.nchikvinidze.messengerapp.Chat
 
 import com.nchikvinidze.messengerapp.data.MessageItem
 

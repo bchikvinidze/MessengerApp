@@ -1,4 +1,4 @@
-package com.nchikvinidze.messengerapp.interactors
+package com.nchikvinidze.messengerapp.Signup
 
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -10,7 +10,6 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.storage.ktx.storageMetadata
 import com.nchikvinidze.messengerapp.data.User
-import com.nchikvinidze.messengerapp.presenters.interfaces.ISignupPresenter
 import java.io.ByteArrayOutputStream
 
 class SignupInteractor(val presenter: ISignupPresenter) {
