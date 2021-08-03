@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/searchpageLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/chatappbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/chatappbar"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/chatCollapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            android:fitsSystemWindows="true">
+
+            <LinearLayout
+                android:id="@+id/topinfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top|start"
+                app:layout_collapseMode="parallax"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/chaticonsfromscreen"
+                android:layout_marginTop="@dimen/chaticonsfromscreen"
+                android:layout_marginRight="@dimen/appbardistance">
+
+                <ImageButton
+                    android:id="@+id/backButton"
+                    android:layout_width="@dimen/chatbackdimen"
+                    android:layout_height="@dimen/chatbackdimen"
+                    android:background="@drawable/ic_back"
+                />
+
+                 <LinearLayout
+                    android:id="@+id/nameandpic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/nameSurname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/chatbackdimen"
+                        android:text="Name Surname"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/namesurnamesz"
+                        android:layout_weight="1"
+                        android:textStyle="bold">
+                    </TextView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/chatprofielpicdimen"
+                        android:layout_height="@dimen/chatprofielpicdimen"
+                        app:cardCornerRadius="25dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true">
+                        <ImageButton
+                            android:id="@+id/profilePicture"
+                            android:layout_width="@dimen/chatprofielpicdimen"
+                            android:layout_height="@dimen/chatprofielpicdimen"
+                            android:src="@drawable/avatar_image_placeholder"
+                            android:scaleType="centerCrop"
+                            >
+                        </ImageButton>
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/profession"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profession"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/professionsz"
+                    android:layout_gravity="bottom">
+                </TextView>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/chatappbarheight"
+                app:layout_collapseMode="pin"/>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginBottom="@dimen/rvfrombottom">
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        app:fabAlignmentMode="end">
+
+        <RelativeLayout
+            android:id="@+id/chatboxLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedview"
+            android:backgroundTint="@color/light_grey"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="@dimen/chaticonsfromscreen"
+            android:layout_marginBottom="@dimen/chaticonsfromscreen"
+            android:layout_marginLeft="@dimen/chaticonsfromscreen">
+
+
+            <EditText
+                  android:id="@+id/editMessage"
+                  android:layout_marginStart="@dimen/chaticonsfromscreen"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_centerVertical="true"
+                  android:layout_toStartOf="@+id/sendButton"
+                  android:background="@android:color/transparent"
+                  android:hint="Message"
+                  android:inputType="text"
+                  android:maxLines="3"
+                  android:layout_marginLeft="16dp"
+                  android:layout_toLeftOf="@+id/sendButton" />
+
+             <ImageButton
+                  android:id="@+id/sendButton"
+                  android:layout_width="@dimen/sendbuttondimen"
+                  android:layout_height="@dimen/sendbuttondimen"
+                  android:layout_alignParentEnd="true"
+                  android:background="?attr/selectableItemBackground"
+                  android:text="Send"
+                  android:layout_alignParentRight="true"
+                  app:srcCompat="@drawable/ic_send"/>
+
+        </RelativeLayout>
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

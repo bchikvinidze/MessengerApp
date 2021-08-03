@@ -15,4 +15,23 @@
     <dimen name="framewidth">1dp</dimen>
     <dimen name="signupButtonFromProfession">50dp</dimen>
     <dimen name="fabMargin">25dp</dimen>
+
+
+    <dimen name="chatappbar">170dp</dimen>
+    <dimen name="chatbackdimen">32dp</dimen>
+    <dimen name="chaticonsfromscreen">16dp</dimen>
+    <dimen name="namesurnamesz">30sp</dimen>
+    <dimen name="professionsz">15sp</dimen>
+    <dimen name="chatprofielpicdimen">50dp</dimen>
+
+    <dimen name="chattimestampsz">16sp</dimen>
+    <dimen name="chatmessagesz">16sp</dimen>
+    <dimen name="messagePaddingupdown">12dp</dimen>
+    <dimen name="messagePaddingsides">16dp</dimen>
+    <dimen name="messageroundrad">16dp</dimen>
+    <dimen name="chatboxwidth">200dp</dimen>
+    <dimen name="sendbuttondimen">50dp</dimen>
+    <dimen name="chatappbarheight">68dp</dimen>
+    <dimen name="appbardistance">8dp</dimen>
+    <dimen name="rvfrombottom">60dp</dimen>
 </resources>
