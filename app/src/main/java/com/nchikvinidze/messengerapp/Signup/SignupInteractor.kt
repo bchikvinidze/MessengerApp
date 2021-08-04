@@ -25,7 +25,7 @@ class SignupInteractor(val presenter: ISignupPresenter) {
         userExists(nick, psw, prof, img, usersRef)
     }
 
-    fun userExists(nick : String, psw : String, prof: String, img : Drawable, usersRef : DatabaseReference){
+    private fun userExists(nick : String, psw : String, prof: String, img : Drawable, usersRef : DatabaseReference){
         usersRef.child(nick).get().addOnSuccessListener {
             if(it.exists()){
                 presenter.notifyUserExists()
@@ -35,7 +35,7 @@ class SignupInteractor(val presenter: ISignupPresenter) {
         }
     }
 
-    fun insertNewUser(nick : String, psw : String, prof: String, img : Drawable, usersRef : DatabaseReference){
+    private fun insertNewUser(nick : String, psw : String, prof: String, img : Drawable, usersRef : DatabaseReference){
         //user details upload
         usersRef.push().key?.let {
             usersRef.child(nick).setValue(User(nick,psw,prof))
