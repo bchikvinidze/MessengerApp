@@ -70,45 +70,8 @@
         android:textColor="@color/grey"
         android:textSize="@dimen/signinFontSize"
         android:theme="@style/Theme.MessengerApp"
-        app:layout_constraintBottom_toTopOf="@+id/profileBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/updateButton" />
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/profileBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:contentInsetEnd="0dp"
-            app:contentInsetStart="0dp">
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavigationView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:labelVisibilityMode="unlabeled"
-                app:menu="@menu/profile_bar_menu"
-                android:background="@drawable/transparent_rect"/>
-
-        </com.google.android.material.bottomappbar.BottomAppBar>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_plus_24"
-            app:layout_anchor="@id/bottomAppBar"
-            android:layout_margin="@dimen/fabMargin"
-            style="@style/Widget.App.FloatingActionButton"
-            />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        app:layout_constraintTop_toBottomOf="@id/updateButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
+    android:id="@+id/home"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -41,43 +42,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:alpha="0.6"
-                android:background="@drawable/roundedview"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"/>
+                android:alpha="0.6"
+                android:background="@drawable/roundedview" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_gravity="bottom"
-        android:background="@color/white"
-        app:backgroundTint="@color/white"
-        app:fabCradleMargin="10dp"
-        app:fabCradleRoundedCornerRadius="10dp"
-        app:fabCradleVerticalOffset="10dp">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/transparent_rect"
-            app:itemIconSize="24dp"
-            app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_nav_menu" />
-
-    </com.google.android.material.bottomappbar.BottomAppBar>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/app_name"
-        app:srcCompat="@drawable/ic_plus_24"
-        app:layout_anchor="@id/bottomAppBar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

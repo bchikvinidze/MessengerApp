@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MessengerApp">
         <activity
-            android:name=".Home.HomeActivity"></activity>
+            android:name=".Navigation.NavigationActivity"></activity>
         <activity android:name=".Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

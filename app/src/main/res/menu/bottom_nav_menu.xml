@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
+        android:id="@+id/Home"
         android:icon="@drawable/ic_home"
         android:title="" />
 
     <item
-        android:id="@+id/Placeholder"
+        android:id="@+id/Search"
         android:title="" />
 
     <item
-        android:id="@+id/Search"
+        android:id="@+id/Profile"
         android:icon="@drawable/ic_settings"
         android:title="" />
 

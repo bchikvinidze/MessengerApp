@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.nchikvinidze.messengerapp.Chat.ChatActivity
+import com.nchikvinidze.messengerapp.Navigation.NavigationActivity
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.Signup.SignupActivity
 
@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         //TODO axali intent home-ze gadasasvlelad.
         Toast.makeText(this, "aq intenti chavamatot", Toast.LENGTH_SHORT).show()
         //droebit chatze gadasvlas vizav
-        var intent = Intent(this, ChatActivity::class.java)
+        var intent = Intent(this, NavigationActivity::class.java)
         intent.putExtra("nickname", nick)
         if(nick == "babuca")
             intent.putExtra("recipient", "bubu")
