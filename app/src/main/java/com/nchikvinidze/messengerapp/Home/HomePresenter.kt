@@ -12,4 +12,11 @@ class HomePresenter(view: HomeList.View,
         this.view = null
     }
 
+    override fun scrolledDown() {
+        view?.hideBottomNav()
+    }
+
+    override fun scrolledUp() {
+        view?.showBottomNav()
+    }
 }
