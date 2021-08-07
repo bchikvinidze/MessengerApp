@@ -37,7 +37,8 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
         presenter = LoginPresenter(this, sharedPref)
         //if already logged on, move to home:
-        presenter.checkAlreadyLoggedIn()
+        if(intent.getStringExtra("status") != "logout")
+            presenter.checkAlreadyLoggedIn()
 
         //set listeners
         signinButton.setOnClickListener {
@@ -56,6 +57,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
 
     override fun moveToHome(nick : String) {
         var intent = Intent(this, NavigationActivity::class.java)
+        intent.putExtra("nick", nick)
         startActivity(intent)
     }
 }

@@ -64,8 +64,10 @@ class SearchActivity: AppCompatActivity(), SearchList.View, ClickListener {
     }
 
     override fun showChat(user: User) {
+        val nick = intent.getStringExtra("nick")!!
         var intent = Intent(this, ChatActivity::class.java)
-        intent.putExtra("nickname", user.nick)
+        intent.putExtra("nick", nick)
+        intent.putExtra("recipient", user.nick)
         startActivity(intent)
     }
 }

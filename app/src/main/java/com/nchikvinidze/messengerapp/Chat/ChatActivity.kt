@@ -1,10 +1,12 @@
 package com.nchikvinidze.messengerapp.Chat
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +31,7 @@ class ChatActivity : AppCompatActivity(), IChatView {
     lateinit var chatappbar : AppBarLayout
     lateinit var nick: String
     lateinit var otherNick: String
+    lateinit var bar: ProgressBar
     //maybe Ill move this someplace else later....
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,10 +42,10 @@ class ChatActivity : AppCompatActivity(), IChatView {
         sendButton = findViewById(R.id.sendButton)
         chatappbar = findViewById(R.id.chatappbar)
         sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
-        nick = intent.getStringExtra("nickname").toString()
+        nick = intent.getStringExtra("nick").toString()
         otherNick = intent.getStringExtra("recipient").toString()
+        var bar = ProgressBar(this)
 
-        //IUshi ar undaiyos mara droebit davtoveb adapteris dasetvas
         val options = FirebaseRecyclerOptions.Builder<MessageItem>()
             .setQuery(Firebase.database.getReference(ChatInteractor.MESSAGES+"/$nick-$otherNick"), MessageItem::class.java)
             .setLifecycleOwner(this)
@@ -52,7 +55,9 @@ class ChatActivity : AppCompatActivity(), IChatView {
         chatrv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL ,false)
         presenter = ChatPresenter(this, sharedPref)
         //aq mgoni load screen daschirdeba rom chavamatot
+        showLoader()
         presenter.showMessageHistory(nick, otherNick)
+        hideLoader()
 
         editMessage.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
@@ -72,6 +77,14 @@ class ChatActivity : AppCompatActivity(), IChatView {
             presenter.saveSentMessage(msg) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             afterMessageDisplay()
         }
+    }
+
+    fun showLoader(){
+        //bar.
+    }
+
+    fun hideLoader(){
+
     }
 
     override fun displayMessage(msg: MessageItem){

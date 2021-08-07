@@ -14,7 +14,11 @@ class LoginInteractor(val presenter: ILoginPresenter, sharedPref : SharedPrefere
     var sharedPreferences = sharedPref
 
     fun checkSignIn(nick: String, psw: String){
-        if(auth.currentUser == null) auth.signInAnonymously()
+        //auth.signInWithEmailAndPassword(nick, psw).addOnCompleteListener { task -> }
+        if(auth.currentUser == null) {
+            //auth.signInAnonymously()
+            auth.signInWithEmailAndPassword(nick, psw)
+        }
         val usersRef = database.getReference("users")
         //check if user exists
         userExists(nick, psw, usersRef)
@@ -42,6 +46,9 @@ class LoginInteractor(val presenter: ILoginPresenter, sharedPref : SharedPrefere
             var nickname = sharedPreferences.getString(LOGGED_NICKNAME, "Error").toString()
             presenter.notifyLoggedIn(nickname)
         }
+        /*if(auth.currentUser != null){
+            presenter.notifyLoggedIn(auth.currentUser!!.email.toString())
+        }*/
     }
 
     companion object{
