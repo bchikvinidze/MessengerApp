@@ -28,4 +28,6 @@ class SearchInteractor(val presenter: SearchList.Presenter) {
         }
     }
 
+
+
 }

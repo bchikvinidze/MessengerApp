@@ -39,7 +39,9 @@ class NavigationActivity: AppCompatActivity(), NavigationView.View {
     }
 
     override fun showSearch() {
+        val nick = intent.getStringExtra("nick")!!
         val intent = Intent(this, SearchActivity::class.java)
+        intent.putExtra("nick", nick)
         startActivity(intent)
     }
 

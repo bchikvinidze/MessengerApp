@@ -42,7 +42,7 @@ class ChatActivity : AppCompatActivity(), IChatView {
         sendButton = findViewById(R.id.sendButton)
         chatappbar = findViewById(R.id.chatappbar)
         sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
-        nick = intent.getStringExtra("nickname").toString()
+        nick = intent.getStringExtra("nick").toString()
         otherNick = intent.getStringExtra("recipient").toString()
         var bar = ProgressBar(this)
 
