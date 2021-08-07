@@ -44,7 +44,7 @@ class NavigationActivity: AppCompatActivity(), NavigationView.View {
     }
 
     override fun showProfile() {
-        val profileFragment = ProfileFragment()
+        val profileFragment = ProfileFragment.newInstance(intent.getStringExtra("nick")!!)
         setCurrentFragment(profileFragment)
     }
 

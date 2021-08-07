@@ -3,6 +3,8 @@ package com.nchikvinidze.messengerapp.Signup
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.util.Log
+import android.widget.Toast
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
@@ -36,14 +38,19 @@ class SignupInteractor(val presenter: ISignupPresenter) {
     }
 
     private fun insertNewUser(nick : String, psw : String, prof: String, img : Drawable, usersRef : DatabaseReference){
+        //auth register
+       /* auth.createUserWithEmailAndPassword(nick+"@a.a", psw).addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                // If sign in fails, log message
+                Log.w("user create failure", "createUserWithEmail:failure", task.exception)
+            }
+        } */
+
         //user details upload
         usersRef.push().key?.let {
             usersRef.child(nick).setValue(User(nick,psw,prof))
         }
         //image upload to storage
-        var metadata = storageMetadata {
-            contentType = ""
-        }
         val imgRef = storage.getReference(nick)
         val bitmap = (img as BitmapDrawable).bitmap
         val baos = ByteArrayOutputStream()
