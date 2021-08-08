@@ -8,83 +8,83 @@
     tools:context=".Signup.SignupActivity">
 
     <androidx.core.widget.NestedScrollView
-    android:id="@+id/profileNestedScrollView"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/profileNestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/innerConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/defaultImage"
-            android:layout_width="@dimen/defaultImageDimens"
-            android:layout_height="@dimen/defaultImageDimens"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/defaultImageFromTop"
-            android:src="@drawable/avatar_image_placeholder"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nickname"
-            android:layout_width="@dimen/edittextWidth"
-            android:layout_height="@dimen/edittextHeight"
-            android:gravity="center_horizontal"
-            android:text="@string/nickname"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/defaultImage"
-            android:layout_marginTop="@dimen/loginFromImage"
-            android:textSize="@dimen/edittextFontSize"
-            android:background="@drawable/roundedview"
-            android:editable="false"
-            />
+            <ImageView
+                android:id="@+id/defaultImage"
+                android:layout_width="@dimen/defaultImageDimens"
+                android:layout_height="@dimen/defaultImageDimens"
+                android:layout_marginTop="@dimen/defaultImageFromTop"
+                android:src="@drawable/avatar_image_placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/whatido"
-            android:layout_width="@dimen/edittextWidth"
-            android:layout_height="@dimen/edittextHeight"
-            android:layout_marginTop="@dimen/passwordFromNickname"
-            android:gravity="center_horizontal"
-            android:text="@string/whatido"
-            android:textAlignment="center"
-            android:textSize="@dimen/edittextFontSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nickname"
-            android:theme="@style/Theme.MessengerApp"
-            android:background="@drawable/roundedview"
-            />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nickname"
+                android:layout_width="@dimen/edittextWidth"
+                android:layout_height="@dimen/edittextHeight"
+                android:layout_marginTop="@dimen/loginFromImage"
+                android:background="@drawable/roundedview"
+                android:editable="false"
+                android:gravity="center_horizontal"
+                android:text="@string/nickname"
+                android:textAlignment="center"
+                android:textSize="@dimen/edittextFontSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defaultImage" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/updateButton"
-            android:layout_width="@dimen/signinButtonWidth"
-            android:layout_height="@dimen/signinButtonHeight"
-            android:text="@string/update"
-            android:textSize="@dimen/signinFontSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/whatido"
-            android:theme="@style/Theme.MessengerApp"
-            android:layout_marginTop="@dimen/signupButtonFromProfession"
-            />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/whatido"
+                android:layout_width="@dimen/edittextWidth"
+                android:layout_height="@dimen/edittextHeight"
+                android:layout_marginTop="@dimen/passwordFromNickname"
+                android:background="@drawable/roundedview"
+                android:gravity="center_horizontal"
+                android:text="@string/whatido"
+                android:textAlignment="center"
+                android:textSize="@dimen/edittextFontSize"
+                android:theme="@style/Theme.MessengerApp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nickname" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/signoutButton"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="@dimen/signinButtonWidth"
-            android:layout_height="@dimen/signinButtonHeight"
-            android:text="@string/signout"
-            android:textColor="@color/grey"
-            android:textSize="@dimen/signinFontSize"
-            android:theme="@style/Theme.MessengerApp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/updateButton" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/updateButton"
+                android:layout_width="@dimen/signinButtonWidth"
+                android:layout_height="@dimen/signinButtonHeight"
+                android:layout_marginTop="@dimen/signupButtonFromProfession"
+                android:text="@string/update"
+                android:textSize="@dimen/signinFontSize"
+                android:theme="@style/Theme.MessengerApp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/whatido" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/signoutButton"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="@dimen/signinButtonWidth"
+                android:layout_height="@dimen/signinButtonHeight"
+                android:layout_marginBottom="100dp"
+                android:text="@string/signout"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/signinFontSize"
+                android:theme="@style/Theme.MessengerApp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/updateButton" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
