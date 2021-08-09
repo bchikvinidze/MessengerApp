@@ -23,7 +23,6 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     private lateinit var presenter: LoginPresenter
     private lateinit var signinButton : MaterialButton
     private lateinit var signupButton : MaterialButton
-    private lateinit var sharedPref : SharedPreferences
     private lateinit var loader: LoadingDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,9 +35,8 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         img = findViewById(R.id.defaultImage)
         signinButton = findViewById(R.id.signinButton)
         signupButton = findViewById(R.id.signupButton)
-        sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
         loader = LoadingDialog(this)
-        presenter = LoginPresenter(this, sharedPref)
+        presenter = LoginPresenter(this)
         //if already logged on, move to home:
         if(intent.getStringExtra("status") != "logout")
             presenter.checkAlreadyLoggedIn()

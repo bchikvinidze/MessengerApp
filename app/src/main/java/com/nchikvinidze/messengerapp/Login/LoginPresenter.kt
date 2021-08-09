@@ -2,8 +2,8 @@ package com.nchikvinidze.messengerapp.Login
 
 import android.content.SharedPreferences
 
-class LoginPresenter(var view: ILoginView, sharedPref : SharedPreferences): ILoginPresenter {
-    private val interactor = LoginInteractor(this, sharedPref)
+class LoginPresenter(var view: ILoginView): ILoginPresenter {
+    private val interactor = LoginInteractor(this)
 
     override fun signInAttempt(nick: String, psw: String) {
         view.showLoader()
@@ -28,5 +28,9 @@ class LoginPresenter(var view: ILoginView, sharedPref : SharedPreferences): ILog
     override fun notifyLoggedIn(nick : String) {
         view.hideLoader()
         view.moveToHome(nick)
+    }
+
+    override fun notLoggedIn() {
+        view.hideLoader()
     }
 }

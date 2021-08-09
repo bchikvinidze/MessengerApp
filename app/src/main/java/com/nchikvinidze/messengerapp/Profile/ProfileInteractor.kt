@@ -12,17 +12,23 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.nchikvinidze.messengerapp.Chat.ChatInteractor
 import com.nchikvinidze.messengerapp.Login.LoginInteractor
+import com.nchikvinidze.messengerapp.Login.UserData
 import com.nchikvinidze.messengerapp.Signup.ISignupPresenter
 import com.nchikvinidze.messengerapp.data.User
+import com.nchikvinidze.messengerapp.prefs
 import java.io.ByteArrayOutputStream
 
 class ProfileInteractor(val presenter: ProfilePresenter) {
     val database = Firebase.database
     val storage = Firebase.storage
     val auth = Firebase.auth
-    //var sharedPreferences = sharedPref
+    var nick: String = ""
 
-    fun updateUser(nick : String, newProf : String, newImage : Drawable){
+    init {
+        nick = prefs.userName ?: ""
+    }
+
+    fun updateUser(newProf : String, newImage : Drawable){
         if(auth.currentUser == null) auth.signInAnonymously()
         val usersRef = database.getReference("users")
 
@@ -43,12 +49,12 @@ class ProfileInteractor(val presenter: ProfilePresenter) {
         }
     }
 
-    fun getProfileInfo(nick : String){
+    fun getProfileInfo(){
         val usersRef = database.getReference("users")
         usersRef.child(nick).get().addOnSuccessListener {
             if(it.exists()){
                 var profession = it.child("prof").getValue<String>().toString()
-                presenter.setupProfileProfession(profession)
+                presenter.setupProfileProfession(nick, profession)
             }
         }
 
@@ -60,6 +66,7 @@ class ProfileInteractor(val presenter: ProfilePresenter) {
     }
 
     fun signOut(){
+        prefs.userName = null
         auth.signOut()
     }
 }

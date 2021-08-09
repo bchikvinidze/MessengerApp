@@ -52,7 +52,7 @@ class NavigationActivity: AppCompatActivity(), NavigationView.View, ScrollListen
     }
 
     override fun showProfile() {
-        val profileFragment = ProfileFragment.newInstance(intent.getStringExtra("nick")!!)
+        val profileFragment = ProfileFragment()
         setCurrentFragment(profileFragment)
     }
 

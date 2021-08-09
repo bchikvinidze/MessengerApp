@@ -1,6 +1,5 @@
 package com.nchikvinidze.messengerapp.Profile
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
@@ -13,27 +12,20 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.nchikvinidze.messengerapp.DependencyInjectorImpl
+import com.nchikvinidze.messengerapp.LoadingDialog.LoadingDialog
 import com.nchikvinidze.messengerapp.Login.LoginActivity
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.Signup.SignupActivity
 
-class ProfileFragment(): Fragment(R.layout.profile) {
-    companion object {
-        @JvmStatic
-        fun newInstance(nicknameText: String) = ProfileFragment().apply {
-            arguments = Bundle().apply {
-                putString("nick", nicknameText)
-            }
-        }
-    }
-
-    lateinit var image : ImageView
-    lateinit var nickname : TextInputEditText
-    lateinit var whatido : TextInputEditText
-    lateinit var updateBtn : MaterialButton
-    lateinit var signOutButton : MaterialButton
-    lateinit var presenter: ProfilePresenter
-    lateinit var nicknameText : String
+class ProfileFragment(): Fragment(R.layout.profile), ProfileView.View {
+    private lateinit var image : ImageView
+    private lateinit var nickname : TextInputEditText
+    private lateinit var whatido : TextInputEditText
+    private lateinit var updateBtn : MaterialButton
+    private lateinit var signOutButton : MaterialButton
+    private lateinit var presenter: ProfileView.Presenter
+    private var loader: LoadingDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,10 +38,10 @@ class ProfileFragment(): Fragment(R.layout.profile) {
         whatido = view.findViewById(R.id.whatido)
         updateBtn = view.findViewById(R.id.updateButton)
         signOutButton = view.findViewById(R.id.signoutButton)
-        presenter = ProfilePresenter(this)
-        nickname.setText(nicknameText)
-        presenter.getProfileInfo(nicknameText)
+        loader = activity?.let { LoadingDialog(it) }
+        setPresenter(ProfilePresenter(this, DependencyInjectorImpl()))
 
+        presenter.getProfileInfo()
         image.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, SignupActivity.imagePicker)
@@ -57,23 +49,20 @@ class ProfileFragment(): Fragment(R.layout.profile) {
 
         signOutButton.setOnClickListener {
             presenter.signOut()
-            var intent = Intent(view.context, LoginActivity::class.java)
-            intent.putExtra("status", "logout")
-            startActivity(intent)
         }
 
         updateBtn.setOnClickListener {
-            presenter.updateUser(nicknameText, whatido.text.toString(), image.drawable)
+            presenter.updateUser(whatido.text.toString(), image.drawable)
         }
         return view
     }
 
-    fun setupProfileProfession(profession : String){
+    override fun setupProfileProfession(nick: String, profession : String){
+        nickname.setText(nick)
         whatido.setText(profession)
     }
 
-    fun setupProfileImage(url : String){
-
+    override fun setupProfileImage(url : String){
         Glide.with(this).load(url).into(image)
     }
 
@@ -85,11 +74,21 @@ class ProfileFragment(): Fragment(R.layout.profile) {
         }
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        arguments?.getString("nick")?.let {
-            nicknameText = it
-        }
+    override fun showLoader() {
+        loader?.startLoadingDialog()
     }
 
+    override fun hideLoader() {
+        loader?.dismissDialog()
+    }
+
+    override fun showLogin() {
+        var intent = Intent(view?.context, LoginActivity::class.java)
+        intent.putExtra("status", "logout")
+        startActivity(intent)
+    }
+
+    override fun setPresenter(presenter: ProfileView.Presenter) {
+        this.presenter = presenter
+    }
 }

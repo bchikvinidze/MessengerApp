@@ -6,4 +6,5 @@ interface ILoginPresenter {
     fun successfulLogin(nick : String)
     fun checkAlreadyLoggedIn()
     fun notifyLoggedIn(nick : String)
+    fun notLoggedIn()
 }
