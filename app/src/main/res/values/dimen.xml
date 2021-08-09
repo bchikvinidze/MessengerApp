@@ -16,7 +16,8 @@
     <dimen name="signupButtonFromProfession">50dp</dimen>
     <dimen name="fabMargin">25dp</dimen>
 
-
+    <dimen name="chatIconSize">50dp</dimen>
+    <dimen name="chatIconMargin">20dp</dimen>
     <dimen name="chatappbar">170dp</dimen>
     <dimen name="chatbackdimen">32dp</dimen>
     <dimen name="chaticonsfromscreen">16dp</dimen>
@@ -34,4 +35,29 @@
     <dimen name="chatappbarheight">100dp</dimen>
     <dimen name="appbardistance">8dp</dimen>
     <dimen name="rvfrombottom">60dp</dimen>
+
+    <dimen name="navigationItemSize">24dp</dimen>
+    <dimen name="appBarMargin">10dp</dimen>
+
+    <dimen name="appBarHeight">192dp</dimen>
+    <dimen name="homeToolbarHeight">100dp</dimen>
+    <dimen name="homeSearchMarginLeft">10dp</dimen>
+    <dimen name="homeSearchMarginBottom">20dp</dimen>
+
+    <dimen name="loaderMargin">16dp</dimen>
+    <dimen name="loaderTextSize">16sp</dimen>
+
+    <dimen name="searchToolbarHeight">100dp</dimen>
+    <dimen name="searchHeight">50dp</dimen>
+    <dimen name="searchMargin">20dp</dimen>
+
+    <dimen name="userIconWidth">100dp</dimen>
+    <dimen name="userIconMarginLeft">30dp</dimen>
+    <dimen name="userIconMarginTop">10dp</dimen>
+    <dimen name="userIconMarginRight">20dp</dimen>
+    <dimen name="userNamemarginTop">40dp</dimen>
+    <dimen name="userNamemarginBottom">4dp</dimen>
+    <dimen name="userItemHeight">120dp</dimen>
+    <dimen name="userNameSize">18sp</dimen>
+    <dimen name="professionSize">14sp</dimen>
 </resources>

@@ -16,9 +16,9 @@
         android:layout_gravity="bottom"
         android:background="@color/white"
         app:backgroundTint="@color/white"
-        app:fabCradleMargin="10dp"
-        app:fabCradleRoundedCornerRadius="10dp"
-        app:fabCradleVerticalOffset="10dp"
+        app:fabCradleMargin="@dimen/appBarMargin"
+        app:fabCradleRoundedCornerRadius="@dimen/appBarMargin"
+        app:fabCradleVerticalOffset="@dimen/appBarMargin"
         app:hideOnScroll="true"
         app:layout_scrollFlags="scroll|enterAlways">
 
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/transparent_rect"
-            app:itemIconSize="24dp"
+            app:itemIconSize="@dimen/navigationItemSize"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_nav_menu" />
 

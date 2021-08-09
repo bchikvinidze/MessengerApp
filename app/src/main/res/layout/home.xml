@@ -10,7 +10,7 @@
         android:id="@+id/appbar"
 
         android:layout_width="match_parent"
-        android:layout_height="192dp">
+        android:layout_height="@dimen/appBarHeight">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="100dp">
+                android:layout_height="@dimen/homeToolbarHeight">
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -42,10 +42,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginStart="@dimen/homeSearchMarginLeft"
+                android:layout_marginLeft="@dimen/homeSearchMarginLeft"
+                android:layout_marginTop="@dimen/homeSearchMarginBottom"
+                android:layout_marginEnd="@dimen/homeSearchMarginLeft"
+                android:layout_marginRight="@dimen/homeSearchMarginLeft"
+                android:layout_marginBottom="@dimen/homeSearchMarginBottom"
                 android:alpha="0.6"
                 android:background="@drawable/roundedview" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
