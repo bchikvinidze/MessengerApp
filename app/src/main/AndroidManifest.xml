@@ -14,7 +14,8 @@
         <activity
             android:name=".Navigation.NavigationActivity"></activity>
         <activity
-            android:name=".Search.SearchActivity"></activity>
+            android:name=".Search.SearchActivity"
+            android:noHistory="true"></activity>
         <activity android:name=".Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

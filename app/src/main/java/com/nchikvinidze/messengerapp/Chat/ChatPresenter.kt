@@ -23,4 +23,8 @@ class ChatPresenter(var view: IChatView, sharedPref : SharedPreferences) : IChat
             view.displayMessage(elem)
         }
     }
+
+    override fun backClicked() {
+        view.showHome()
+    }
 }

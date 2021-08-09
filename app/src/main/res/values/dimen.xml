@@ -31,7 +31,7 @@
     <dimen name="messageroundrad">16dp</dimen>
     <dimen name="chatboxwidth">200dp</dimen>
     <dimen name="sendbuttondimen">50dp</dimen>
-    <dimen name="chatappbarheight">68dp</dimen>
+    <dimen name="chatappbarheight">100dp</dimen>
     <dimen name="appbardistance">8dp</dimen>
     <dimen name="rvfrombottom">60dp</dimen>
 </resources>

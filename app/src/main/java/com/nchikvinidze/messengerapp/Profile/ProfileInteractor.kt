@@ -1,6 +1,5 @@
 package com.nchikvinidze.messengerapp.Profile
 
-import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
@@ -10,11 +9,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.nchikvinidze.messengerapp.Chat.ChatInteractor
-import com.nchikvinidze.messengerapp.Login.LoginInteractor
-import com.nchikvinidze.messengerapp.Login.UserData
-import com.nchikvinidze.messengerapp.Signup.ISignupPresenter
-import com.nchikvinidze.messengerapp.data.User
 import com.nchikvinidze.messengerapp.prefs
 import java.io.ByteArrayOutputStream
 

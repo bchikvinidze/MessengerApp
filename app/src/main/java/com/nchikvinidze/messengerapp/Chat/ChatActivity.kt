@@ -1,20 +1,24 @@
 package com.nchikvinidze.messengerapp.Chat
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.SubtitleCollapsingToolbarLayout
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.nchikvinidze.messengerapp.ChatItemsAdapter
+import com.nchikvinidze.messengerapp.LoadingDialog.LoadingDialog
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.data.MessageItem
 import java.text.SimpleDateFormat
@@ -22,30 +26,29 @@ import java.util.*
 
 class ChatActivity : AppCompatActivity(), IChatView {
 
-    lateinit var chatrv : RecyclerView
-    lateinit var chatrvAdapter : ChatItemsAdapter
-    lateinit var editMessage : EditText
-    lateinit var sendButton : ImageButton
-    lateinit var sharedPref : SharedPreferences
-    lateinit var presenter : ChatPresenter
-    lateinit var chatappbar : AppBarLayout
-    lateinit var nick: String
-    lateinit var otherNick: String
-    lateinit var bar: ProgressBar
+    private lateinit var chatrv : RecyclerView
+    private lateinit var chatrvAdapter : ChatItemsAdapter
+    private lateinit var editMessage : EditText
+    private lateinit var sendButton : ImageButton
+    private lateinit var sharedPref : SharedPreferences
+    private lateinit var presenter : ChatPresenter
+    private lateinit var chatappbar : AppBarLayout
+    private lateinit var nick: String
+    private lateinit var otherNick: String
+    private lateinit var loader: LoadingDialog
+    private lateinit var collapsingToolbar: SubtitleCollapsingToolbarLayout
+    private lateinit var toolbar: Toolbar
     //maybe Ill move this someplace else later....
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chatpage)
-        chatrv = findViewById(R.id.chatRv)
-        editMessage = findViewById(R.id.editMessage)
-        sendButton = findViewById(R.id.sendButton)
-        chatappbar = findViewById(R.id.chatappbar)
-        sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
-        nick = intent.getStringExtra("nick").toString()
-        otherNick = intent.getStringExtra("recipient").toString()
-        var bar = ProgressBar(this)
-
+        setupView()
+        setupTitleColors()
+        collapsingToolbar.title = otherNick
+        loader = LoadingDialog(this)
+        addTollbarListener()
         val options = FirebaseRecyclerOptions.Builder<MessageItem>()
             .setQuery(Firebase.database.getReference(ChatInteractor.MESSAGES+"/$nick-$otherNick"), MessageItem::class.java)
             .setLifecycleOwner(this)
@@ -54,7 +57,6 @@ class ChatActivity : AppCompatActivity(), IChatView {
         chatrv.adapter = chatrvAdapter
         chatrv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL ,false)
         presenter = ChatPresenter(this, sharedPref)
-        //aq mgoni load screen daschirdeba rom chavamatot
         showLoader()
         presenter.showMessageHistory(nick, otherNick)
         hideLoader()
@@ -79,12 +81,38 @@ class ChatActivity : AppCompatActivity(), IChatView {
         }
     }
 
+    private fun setupView() {
+        chatrv = findViewById(R.id.chatRv)
+        editMessage = findViewById(R.id.editMessage)
+        sendButton = findViewById(R.id.sendButton)
+        chatappbar = findViewById(R.id.chatappbar)
+        toolbar = findViewById(R.id.toolbar)
+        sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
+        nick = intent.getStringExtra("nick").toString()
+        otherNick = intent.getStringExtra("recipient").toString()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun setupTitleColors() {
+        collapsingToolbar = findViewById(R.id.chatCollapsingToolbar)
+        collapsingToolbar.setCollapsedTitleTextColor(getColor(R.color.white))
+        collapsingToolbar.setExpandedSubtitleTextColor(getColor(R.color.white))
+        collapsingToolbar.setCollapsedSubtitleTextColor(getColor(R.color.white))
+        collapsingToolbar.setExpandedTitleTextColor(getColor(R.color.white))
+    }
+
+    private fun addTollbarListener() {
+        toolbar.setNavigationOnClickListener {
+            presenter.backClicked()
+        }
+    }
+
     fun showLoader(){
-        //bar.
+        loader.startLoadingDialog()
     }
 
     fun hideLoader(){
-
+        loader.dismissDialog()
     }
 
     override fun displayMessage(msg: MessageItem){
@@ -106,5 +134,9 @@ class ChatActivity : AppCompatActivity(), IChatView {
     override fun onStop() {
         super.onStop()
         chatrvAdapter.stopListening()
+    }
+
+    override fun showHome() {
+        finish()
     }
 }

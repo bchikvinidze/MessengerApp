@@ -40,10 +40,3 @@ class LoginInteractor(val presenter: ILoginPresenter)  {
         }
     }
 }
-
-class UserData{
-    companion object {
-        val LOGGED_ON = "LOGGED_ON"
-        val LOGGED_NICKNAME = "LOGGED_NICKNAME"
-    }
-}
