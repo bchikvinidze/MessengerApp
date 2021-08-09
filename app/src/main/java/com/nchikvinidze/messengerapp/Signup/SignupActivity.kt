@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.nchikvinidze.messengerapp.LoadingDialog.LoadingDialog
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.Login.LoginActivity
 
@@ -18,12 +19,13 @@ class SignupActivity : AppCompatActivity(), ISignupView {
     }
 
     //views to be inizialized later
-    lateinit var nicknameField : TextInputEditText
-    lateinit var passwordField : TextInputEditText
-    lateinit var whatIdoField: TextInputEditText
-    lateinit var img: ImageView
-    lateinit var signUpButton : MaterialButton
-    lateinit var presenter: SignupPresenter
+    private lateinit var nicknameField : TextInputEditText
+    private lateinit var passwordField : TextInputEditText
+    private lateinit var whatIdoField: TextInputEditText
+    private lateinit var img: ImageView
+    private lateinit var signUpButton : MaterialButton
+    private lateinit var presenter: SignupPresenter
+    private lateinit var loader: LoadingDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,7 @@ class SignupActivity : AppCompatActivity(), ISignupView {
         whatIdoField = findViewById(R.id.profession)
         img = findViewById(R.id.defaultImage)
         signUpButton = findViewById(R.id.signupButton)
+        loader = LoadingDialog(this)
         presenter = SignupPresenter(this)
 
         img.setOnClickListener {
@@ -68,5 +71,13 @@ class SignupActivity : AppCompatActivity(), ISignupView {
     override fun moveToSignIn() {
         var intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun showLoader() {
+        loader.startLoadingDialog()
+    }
+
+    override fun hideLoader() {
+        loader.dismissDialog()
     }
 }

@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.nchikvinidze.messengerapp.LoadingDialog.LoadingDialog
 import com.nchikvinidze.messengerapp.Navigation.NavigationActivity
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.Signup.SignupActivity
@@ -16,13 +17,14 @@ import com.nchikvinidze.messengerapp.Signup.SignupActivity
 class LoginActivity : AppCompatActivity(), ILoginView {
 
     //views to be initialized later
-    lateinit var nicknameField : TextInputEditText
-    lateinit var passwordField : TextInputEditText
-    lateinit var img: ImageView
-    lateinit var presenter: LoginPresenter
-    lateinit var signinButton : MaterialButton
-    lateinit var signupButton : MaterialButton
-    lateinit var sharedPref : SharedPreferences
+    private lateinit var nicknameField : TextInputEditText
+    private lateinit var passwordField : TextInputEditText
+    private lateinit var img: ImageView
+    private lateinit var presenter: LoginPresenter
+    private lateinit var signinButton : MaterialButton
+    private lateinit var signupButton : MaterialButton
+    private lateinit var sharedPref : SharedPreferences
+    private lateinit var loader: LoadingDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         signinButton = findViewById(R.id.signinButton)
         signupButton = findViewById(R.id.signupButton)
         sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
+        loader = LoadingDialog(this)
         presenter = LoginPresenter(this, sharedPref)
         //if already logged on, move to home:
         if(intent.getStringExtra("status") != "logout")
@@ -59,5 +62,13 @@ class LoginActivity : AppCompatActivity(), ILoginView {
         var intent = Intent(this, NavigationActivity::class.java)
         intent.putExtra("nick", nick)
         startActivity(intent)
+    }
+
+    override fun showLoader() {
+        loader.startLoadingDialog()
+    }
+
+    override fun hideLoader() {
+        loader.dismissDialog()
     }
 }
