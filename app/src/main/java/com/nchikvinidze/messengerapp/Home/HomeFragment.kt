@@ -27,7 +27,7 @@ class HomeFragment: Fragment(R.layout.home), HomeList.View {
         val root = inflater.inflate(R.layout.home, container, false)
         recyclerView = root.findViewById(R.id.recycler_view)
         adapter = SearchAdapter(listOf(User("asd", "asd", "asdasd", null),User("asd", "asd", "asdasd", null),User("asd", "asd", "asdasd", null),User("asd", "asd", "asdasd", null),User("asd", "asd", "asdasd", null),User("asd", "asd", "asdasd", null),
-            User("asd", "asd", "asdasd", null), User("asd", "asd", "asdasd", null)))
+            User("asd", "asd", "asdasd", null), User("asd", "asd", "asdasd", null)), root.context)
         recyclerView.adapter = adapter
         layoutManager = LinearLayoutManager(root.context)
         recyclerView.layoutManager = layoutManager

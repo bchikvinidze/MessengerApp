@@ -2,26 +2,18 @@ package com.nchikvinidze.messengerapp.Profile
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.TextUtils.replace
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.nchikvinidze.messengerapp.Home.HomeFragment
 import com.nchikvinidze.messengerapp.Login.LoginActivity
-import com.nchikvinidze.messengerapp.Navigation.NavigationActivity
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.Signup.SignupActivity
 
@@ -83,10 +75,6 @@ class ProfileFragment(): Fragment(R.layout.profile) {
     fun setupProfileImage(url : String){
 
         Glide.with(this).load(url).into(image)
-        /*var cr = activity?.contentResolver
-        val inputStream = cr?.openInputStream(uri) /// ver aketebs amas...
-        val drawable = Drawable.createFromStream(inputStream, uri.toString())
-        image.setImageDrawable(drawable)*/
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

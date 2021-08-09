@@ -20,7 +20,7 @@ class SearchActivity: AppCompatActivity(), SearchList.View, ClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search)
-        adapter = SearchAdapter(ArrayList())
+        adapter = SearchAdapter(ArrayList(), this)
         adapter.clickListener = this
         val recyclerView: RecyclerView = findViewById(R.id.search_recycler_view)
         recyclerView.adapter = adapter

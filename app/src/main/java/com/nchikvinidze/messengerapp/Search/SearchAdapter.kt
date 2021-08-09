@@ -1,12 +1,14 @@
 package com.nchikvinidze.messengerapp.Search
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.data.User
+import com.bumptech.glide.Glide
 
-class SearchAdapter(var model: List<User>) : RecyclerView.Adapter<UserItemViewHolder>() {
+class SearchAdapter(var model: List<User>, var context: Context) : RecyclerView.Adapter<UserItemViewHolder>() {
     var clickListener: ClickListener? = null
 
     override fun getItemCount(): Int {
@@ -17,6 +19,9 @@ class SearchAdapter(var model: List<User>) : RecyclerView.Adapter<UserItemViewHo
         val item = model[position]
         holder.clickListener = clickListener
         holder.fill(item)
+        Glide.with(context)
+            .load(item.url)
+            .into(holder.iconImageView);
     }
 
     fun update(model: List<User>) {

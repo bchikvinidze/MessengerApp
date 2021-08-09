@@ -38,14 +38,6 @@ class SignupInteractor(val presenter: ISignupPresenter) {
     }
 
     private fun insertNewUser(nick : String, psw : String, prof: String, img : Drawable, usersRef : DatabaseReference){
-        //auth register
-       /* auth.createUserWithEmailAndPassword(nick+"@a.a", psw).addOnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                // If sign in fails, log message
-                Log.w("user create failure", "createUserWithEmail:failure", task.exception)
-            }
-        } */
-
         //user details upload
         usersRef.push().key?.let {
             usersRef.child(nick).setValue(User(nick,psw,prof))

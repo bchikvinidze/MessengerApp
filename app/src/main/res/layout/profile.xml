@@ -19,15 +19,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/defaultImage"
                 android:layout_width="@dimen/defaultImageDimens"
                 android:layout_height="@dimen/defaultImageDimens"
                 android:layout_marginTop="@dimen/defaultImageFromTop"
+                android:scaleType="centerCrop"
                 android:src="@drawable/avatar_image_placeholder"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nickname"
