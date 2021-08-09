@@ -17,5 +17,7 @@ interface SearchList {
         fun showHome()
         fun showUsers(data: List<User>)
         fun showChat(user: User)
+        fun showLoader()
+        fun hideLoader()
     }
 }

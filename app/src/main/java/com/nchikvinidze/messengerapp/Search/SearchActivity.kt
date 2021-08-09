@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nchikvinidze.messengerapp.Chat.ChatActivity
 import com.nchikvinidze.messengerapp.DependencyInjectorImpl
+import com.nchikvinidze.messengerapp.LoadingDialog.LoadingDialog
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.data.User
 
@@ -16,6 +17,9 @@ class SearchActivity: AppCompatActivity(), SearchList.View, ClickListener {
     private lateinit var presenter: SearchList.Presenter
     private lateinit var adapter: SearchAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
+    private lateinit var loader: LoadingDialog
+    private lateinit var searchView: SearchView
+    private lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,11 +31,22 @@ class SearchActivity: AppCompatActivity(), SearchList.View, ClickListener {
         layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         setPresenter(SearchPresenter(this, DependencyInjectorImpl()))
-        val toolbar: Toolbar = findViewById(R.id.search_toolbar)
+        toolbar = findViewById(R.id.search_toolbar)
+        addTollbarListener()
+        loader = LoadingDialog(this)
+        searchView = findViewById(R.id.search_user)
+        addSearchViewListener()
+        presenter.onViewCreated()
+    }
+
+    private fun addTollbarListener() {
         toolbar.setNavigationOnClickListener {
             presenter.backClicked()
         }
-        val searchView: SearchView = findViewById(R.id.search_user)
+    }
+
+    private fun addSearchViewListener() {
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query?.length ?: 0 >= 3) {
@@ -44,7 +59,6 @@ class SearchActivity: AppCompatActivity(), SearchList.View, ClickListener {
                 return true
             }
         })
-        presenter.onViewCreated()
     }
 
     override fun setPresenter(presenter: SearchList.Presenter) {
@@ -69,5 +83,13 @@ class SearchActivity: AppCompatActivity(), SearchList.View, ClickListener {
         intent.putExtra("nick", nick)
         intent.putExtra("recipient", user.nick)
         startActivity(intent)
+    }
+
+    override fun showLoader() {
+        loader.startLoadingDialog()
+    }
+
+    override fun hideLoader() {
+        loader.dismissDialog()
     }
 }

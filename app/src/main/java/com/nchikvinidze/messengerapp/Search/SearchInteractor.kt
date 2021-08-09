@@ -26,11 +26,11 @@ class SearchInteractor(val presenter: SearchList.Presenter) {
                         imgRef.downloadUrl.addOnSuccessListener {
                             user.url = URL(it.toString())
                             users.add(user)
+                            presenter.dataLoaded(users)
                         }
                     }
                 }
             }
-            presenter.dataLoaded(users)
         }
     }
 

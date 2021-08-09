@@ -11,10 +11,12 @@ class SearchPresenter(view: SearchList.View,
     private var view: SearchList.View? = view
 
     override fun onViewCreated() {
+        view?.showLoader()
         interactor.loadUsers(null)
     }
 
     override fun dataLoaded(data: List<User>) {
+        view?.hideLoader()
         view?.showUsers(data)
     }
 
@@ -27,6 +29,7 @@ class SearchPresenter(view: SearchList.View,
     }
 
     override fun search(name: String?) {
+        view?.showLoader()
         interactor.loadUsers(name)
     }
 
