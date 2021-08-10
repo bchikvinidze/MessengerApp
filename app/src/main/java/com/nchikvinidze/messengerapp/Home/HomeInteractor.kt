@@ -11,10 +11,12 @@ import com.google.firebase.storage.ktx.storage
 import com.nchikvinidze.messengerapp.Chat.ChatInteractor
 import com.nchikvinidze.messengerapp.data.MessageItem
 import com.nchikvinidze.messengerapp.prefs
+import java.net.URL
 
 class HomeInteractor(val presenter: HomeList.Presenter) {
     val database = Firebase.database
     val auth = Firebase.auth
+    val storage = Firebase.storage
 
     fun loadMessageList(){
         if(auth.currentUser == null) auth.signInAnonymously()
@@ -25,18 +27,26 @@ class HomeInteractor(val presenter: HomeList.Presenter) {
         messagesRef.child(childName).get().addOnSuccessListener {
             if(it.exists()){
                 var messagesList: MutableList<MessageItem> = mutableListOf()
-                for(child in it.children){
+                var count = 0
+                for(child in it.children) {
                     val message = child.children.last()
                     var from = message.child(ChatInteractor.FROM).getValue<String>().toString()
                     var to = message.child(ChatInteractor.TO).getValue<String>().toString()
                     var text = message.child(ChatInteractor.TEXT).getValue<String>().toString()
                     var time = message.child(ChatInteractor.TIME).getValue<String>().toString()
-                    var timemillis = message.child(ChatInteractor.TIMEMILLIS).getValue<Long>()?.toLong()
-                    if(timemillis == null) timemillis = 0
-                    if(from == nick)
-                        messagesList.add(MessageItem(timemillis, time, true, nick, to, text))
-                    else
-                        messagesList.add(MessageItem(timemillis, time, false, from, nick, text))
+                    var timemillis =
+                        message.child(ChatInteractor.TIMEMILLIS).getValue<Long>()?.toLong()
+                    if (timemillis == null) timemillis = 0
+                    var item = MessageItem(timemillis, time, false, from, nick, text)
+                    if (from == nick)
+                        item = MessageItem(timemillis, time, true, nick, to, text)
+                    val otherNick = if (prefs.userName == item.from) item.to else item.from
+                    val imgRef = storage.getReference(otherNick)
+                    imgRef.downloadUrl.addOnSuccessListener {
+                        item.url = URL(it.toString())
+                        messagesList.add(item)
+                    }
+                    count += 1
                 }
                 var sortedList = messagesList.sortedWith(compareBy({ it.timemillis }))
                 presenter.messagesLoaded(sortedList.toMutableList())
@@ -56,10 +66,15 @@ class HomeInteractor(val presenter: HomeList.Presenter) {
             var time = message.child(ChatInteractor.TIME).getValue<String>().toString()
             var timemillis = message.child(ChatInteractor.TIMEMILLIS).getValue<Long>()?.toLong()
             if(timemillis == null) timemillis = 0
+            var item = MessageItem(timemillis, time, false, from, nick, text)
             if(from == nick)
-                presenter.addItem(MessageItem(timemillis, time, true, nick, to, text))
-            else
-                presenter.addItem(MessageItem(timemillis, time, false, from, nick, text))
+                item = MessageItem(timemillis, time, true, nick, to, text)
+            val otherNick = if(prefs.userName == item.from) item.to else item.from
+            val imgRef = storage.getReference(otherNick)
+            imgRef.downloadUrl.addOnSuccessListener {
+                item.url = URL(it.toString())
+                presenter.addItem(item)
+            }
         }
     }
 
@@ -85,5 +100,13 @@ class HomeInteractor(val presenter: HomeList.Presenter) {
 
             }
         })
+    }
+
+    fun getUrl(item: MessageItem) {
+        val otherNick = if(prefs.userName == item.from) item.to else item.from
+        val imgRef = storage.getReference(otherNick)
+        imgRef.downloadUrl.addOnSuccessListener {
+            item.url = URL(it.toString())
+        }
     }
 }

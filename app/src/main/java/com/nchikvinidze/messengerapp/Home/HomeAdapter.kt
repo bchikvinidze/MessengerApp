@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.data.MessageItem
 
@@ -18,9 +20,10 @@ class HomeAdapter(var model: List<MessageItem>, var context: Context) : Recycler
         val item = model[position]
         holder.clickListener = clickListener
         holder.fill(item)
-//        Glide.with(context)
-//            .load(item.url)
-//            .into(holder.iconImageView);
+        Glide.with(context)
+            .load(item.url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(holder.iconImageView);
     }
 
     fun update(model: List<MessageItem>) {

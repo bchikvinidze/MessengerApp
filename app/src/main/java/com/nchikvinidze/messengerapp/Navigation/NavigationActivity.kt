@@ -13,15 +13,19 @@ import com.nchikvinidze.messengerapp.DependencyInjectorImpl
 import com.nchikvinidze.messengerapp.Home.HomeFragment
 import com.nchikvinidze.messengerapp.Home.MessageClickListener
 import com.nchikvinidze.messengerapp.Home.ScrollListener
+import com.nchikvinidze.messengerapp.Login.LoginActivity
 import com.nchikvinidze.messengerapp.Profile.ProfileFragment
+import com.nchikvinidze.messengerapp.Profile.SignOutClickListener
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.Search.SearchActivity
 import com.nchikvinidze.messengerapp.data.User
 
-class NavigationActivity: AppCompatActivity(), NavigationView.View, ScrollListener, MessageClickListener {
+class NavigationActivity: AppCompatActivity(), NavigationView.View, ScrollListener, MessageClickListener, SignOutClickListener {
     private lateinit var presenter: NavigationView.Presenter
     private lateinit var navigationView: BottomNavigationView
     private lateinit var navigationBar: BottomAppBar
+    private val homeFragment = HomeFragment()
+    private val profileFragment = ProfileFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +35,9 @@ class NavigationActivity: AppCompatActivity(), NavigationView.View, ScrollListen
         navigationView = findViewById(R.id.nav_view)
         navigationBar = findViewById(R.id.bottomAppBar)
         val fab: FloatingActionButton = findViewById(R.id.fab)
+        homeFragment.scrollListener = this
+        homeFragment.clickListener = this
+        profileFragment.clickListener = this
 
         presenter.onViewCreated()
 
@@ -55,14 +62,10 @@ class NavigationActivity: AppCompatActivity(), NavigationView.View, ScrollListen
     }
 
     override fun showProfile() {
-        val profileFragment = ProfileFragment()
         setCurrentFragment(profileFragment)
     }
 
     override fun showHome() {
-        val homeFragment = HomeFragment()
-        homeFragment.scrollListener = this
-        homeFragment.clickListener = this
         setCurrentFragment(homeFragment)
     }
 
@@ -95,4 +98,11 @@ class NavigationActivity: AppCompatActivity(), NavigationView.View, ScrollListen
             replace(R.id.flFragment,fragment)
             commit()
         }
+
+    override fun signOutClicked() {
+        var intent = Intent(this, LoginActivity::class.java)
+        intent.putExtra("status", "logout")
+        finish()
+        startActivity(intent)
+    }
 }

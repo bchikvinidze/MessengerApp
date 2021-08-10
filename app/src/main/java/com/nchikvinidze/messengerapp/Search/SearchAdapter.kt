@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.data.User
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class SearchAdapter(var model: List<User>, var context: Context) : RecyclerView.Adapter<UserItemViewHolder>() {
     var clickListener: ClickListener? = null
@@ -21,6 +22,7 @@ class SearchAdapter(var model: List<User>, var context: Context) : RecyclerView.
         holder.fill(item)
         Glide.with(context)
             .load(item.url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.iconImageView);
     }
 

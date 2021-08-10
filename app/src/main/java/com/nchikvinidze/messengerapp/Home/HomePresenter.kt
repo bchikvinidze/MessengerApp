@@ -25,8 +25,8 @@ class HomePresenter(view: HomeList.View,
     }
 
     override fun loadMessages() {
-        view?.showLoader()
-        interactor.loadMessageList()
+        // view?.showLoader()
+        // interactor.loadMessageList()
     }
 
     override fun messagesLoaded(data: MutableList<MessageItem>) {
@@ -43,6 +43,7 @@ class HomePresenter(view: HomeList.View,
             list.remove(message[0])
         }
         list.add(0, item)
+        list.sortByDescending{ it.timemillis }
         view?.showMessages(list)
     }
 

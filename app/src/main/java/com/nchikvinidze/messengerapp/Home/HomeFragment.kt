@@ -1,6 +1,5 @@
 package com.nchikvinidze.messengerapp.Home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,19 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import com.nchikvinidze.messengerapp.Chat.ChatInteractor
 import com.nchikvinidze.messengerapp.DependencyInjectorImpl
 import com.nchikvinidze.messengerapp.LoadingDialog.LoadingDialog
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.data.MessageItem
-import com.nchikvinidze.messengerapp.data.MessageList
-import com.nchikvinidze.messengerapp.prefs
 
 class HomeFragment: Fragment(R.layout.home), HomeList.View {
     private lateinit var presenter: HomeList.Presenter

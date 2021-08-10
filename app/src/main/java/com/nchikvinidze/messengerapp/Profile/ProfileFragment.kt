@@ -26,6 +26,7 @@ class ProfileFragment(): Fragment(R.layout.profile), ProfileView.View {
     private lateinit var signOutButton : MaterialButton
     private lateinit var presenter: ProfileView.Presenter
     private var loader: LoadingDialog? = null
+    var clickListener: SignOutClickListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,6 +64,9 @@ class ProfileFragment(): Fragment(R.layout.profile), ProfileView.View {
     }
 
     override fun setupProfileImage(url : String){
+        if(activity == null) {
+            return
+        }
         Glide.with(this).load(url).into(image)
     }
 
@@ -83,12 +87,14 @@ class ProfileFragment(): Fragment(R.layout.profile), ProfileView.View {
     }
 
     override fun showLogin() {
-        var intent = Intent(view?.context, LoginActivity::class.java)
-        intent.putExtra("status", "logout")
-        startActivity(intent)
+        clickListener?.signOutClicked()
     }
 
     override fun setPresenter(presenter: ProfileView.Presenter) {
         this.presenter = presenter
     }
+}
+
+interface SignOutClickListener {
+    fun signOutClicked()
 }

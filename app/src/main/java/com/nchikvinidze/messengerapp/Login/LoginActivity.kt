@@ -57,6 +57,7 @@ class LoginActivity : AppCompatActivity(), ILoginView {
     override fun moveToHome(nick : String) {
         var intent = Intent(this, NavigationActivity::class.java)
         intent.putExtra("nick", nick)
+        finish()
         startActivity(intent)
     }
 
