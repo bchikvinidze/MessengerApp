@@ -23,48 +23,55 @@
         android:id="@+id/nickname"
         android:layout_width="@dimen/edittextWidth"
         android:layout_height="@dimen/edittextHeight"
+        android:layout_marginTop="@dimen/loginFromImage"
+        android:background="@drawable/roundedview"
         android:gravity="center_horizontal"
-        android:text="@string/nickname"
+        android:hint="@string/nickname"
         android:textAlignment="center"
+        android:textSize="@dimen/edittextFontSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/defaultImage"
-        android:layout_marginTop="@dimen/loginFromImage"
-        android:textSize="@dimen/edittextFontSize"
-        android:background="@drawable/roundedview"
-        />
+        android:imeOptions="actionNext"
+        android:singleLine="true"
+        android:nextFocusDown="@+id/password"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password"
         android:layout_width="@dimen/edittextWidth"
         android:layout_height="@dimen/edittextHeight"
         android:layout_marginTop="@dimen/passwordFromNickname"
+        android:background="@drawable/roundedview"
         android:gravity="center_horizontal"
-        android:text="@string/password"
+        android:hint="@string/password"
+        android:inputType="textPassword"
         android:textAlignment="center"
         android:textSize="@dimen/edittextFontSize"
+        android:theme="@style/Theme.MessengerApp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nickname"
-        android:theme="@style/Theme.MessengerApp"
-        android:background="@drawable/roundedview"
-        android:inputType="textPassword"/>
+        android:imeOptions="actionNext"
+        android:singleLine="true"
+        android:nextFocusDown="@+id/profession"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/profession"
         android:layout_width="@dimen/edittextWidth"
         android:layout_height="@dimen/edittextHeight"
         android:layout_marginTop="@dimen/signinButtonFromPassword"
+        android:background="@drawable/roundedview"
         android:gravity="center_horizontal"
-        android:text="@string/whatido"
+        android:hint="@string/whatido"
         android:textAlignment="center"
         android:textSize="@dimen/edittextFontSize"
+        android:theme="@style/Theme.MessengerApp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        android:theme="@style/Theme.MessengerApp"
-        android:background="@drawable/roundedview"
-        />
+        android:imeOptions="actionNext"
+        android:singleLine="true"
+        android:nextFocusDown="@+id/signupButton"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signupButton"

@@ -12,6 +12,7 @@ interface HomeList {
         fun messagesLoaded(data: MutableList<MessageItem>)
         fun addItem(item: MessageItem)
         fun onViewCreated()
+        fun search(query: String?)
     }
 
     interface View : BaseView<Presenter> {

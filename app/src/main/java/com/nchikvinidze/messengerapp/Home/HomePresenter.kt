@@ -50,4 +50,12 @@ class HomePresenter(view: HomeList.View,
     override fun onViewCreated() {
         interactor.addListener()
     }
+
+    override fun search(query: String?) {
+        if (query == null) {
+            view?.showMessages(list)
+        } else {
+            view?.showMessages(list.filter { it.from == query || it.to == query })
+        }
+    }
 }

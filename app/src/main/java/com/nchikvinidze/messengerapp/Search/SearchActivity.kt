@@ -59,6 +59,11 @@ class SearchActivity: AppCompatActivity(), SearchList.View, ClickListener {
                 return true
             }
         })
+
+        searchView.setOnCloseListener {
+            presenter.search(null)
+            true
+        }
     }
 
     override fun setPresenter(presenter: SearchList.Presenter) {

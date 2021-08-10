@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ class HomeFragment: Fragment(R.layout.home), HomeList.View {
     var scrollListener: ScrollListener? = null
     private lateinit var loader: LoadingDialog
     var clickListener: MessageClickListener? = null
+    private lateinit var searchView: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +30,7 @@ class HomeFragment: Fragment(R.layout.home), HomeList.View {
     ): View? {
         val root = inflater.inflate(R.layout.home, container, false)
         recyclerView = root.findViewById(R.id.recycler_view)
+        searchView = root.findViewById(R.id.home_search)
         adapter = HomeAdapter(ArrayList(), root.context)
         adapter.clickListener = clickListener
         recyclerView.adapter = adapter
@@ -38,7 +41,29 @@ class HomeFragment: Fragment(R.layout.home), HomeList.View {
         setRecyclerViewScrollListener()
         presenter.onViewCreated()
         presenter.loadMessages()
+        addSearchViewListener()
         return root
+    }
+
+    private fun addSearchViewListener() {
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query?.length ?: 0 >= 3 ) {
+                    presenter.search(query)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return true
+            }
+        })
+
+        searchView.setOnCloseListener {
+            presenter.search(null)
+            true
+        }
     }
 
     private fun setRecyclerViewScrollListener() {
