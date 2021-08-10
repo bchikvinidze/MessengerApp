@@ -8,14 +8,17 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.nchikvinidze.messengerapp.Chat.ChatActivity
 import com.nchikvinidze.messengerapp.DependencyInjectorImpl
 import com.nchikvinidze.messengerapp.Home.HomeFragment
+import com.nchikvinidze.messengerapp.Home.MessageClickListener
 import com.nchikvinidze.messengerapp.Home.ScrollListener
 import com.nchikvinidze.messengerapp.Profile.ProfileFragment
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.Search.SearchActivity
+import com.nchikvinidze.messengerapp.data.User
 
-class NavigationActivity: AppCompatActivity(), NavigationView.View, ScrollListener {
+class NavigationActivity: AppCompatActivity(), NavigationView.View, ScrollListener, MessageClickListener {
     private lateinit var presenter: NavigationView.Presenter
     private lateinit var navigationView: BottomNavigationView
     private lateinit var navigationBar: BottomAppBar
@@ -59,6 +62,7 @@ class NavigationActivity: AppCompatActivity(), NavigationView.View, ScrollListen
     override fun showHome() {
         val homeFragment = HomeFragment()
         homeFragment.scrollListener = this
+        homeFragment.clickListener = this
         setCurrentFragment(homeFragment)
     }
 
@@ -72,6 +76,18 @@ class NavigationActivity: AppCompatActivity(), NavigationView.View, ScrollListen
 
     override fun hideBottomNav() {
         navigationBar.isVisible = false
+    }
+
+    override fun showChat(user: String) {
+        val nick = intent.getStringExtra("nick")!!
+        var intent = Intent(this, ChatActivity::class.java)
+        intent.putExtra("nick", nick)
+        intent.putExtra("recipient", user)
+        startActivity(intent)
+    }
+
+    override fun onClicked(user: String) {
+        showChat(user)
     }
 
     private fun setCurrentFragment(fragment: Fragment) =

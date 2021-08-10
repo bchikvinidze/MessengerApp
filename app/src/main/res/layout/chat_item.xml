@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/user_icon2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:id="@+id/chatUserIcon"
+        android:layout_width="@dimen/userIconWidth"
+        android:layout_height="@dimen/userIconWidth"
+        android:layout_marginStart="@dimen/userIconMarginLeft"
+        android:layout_marginLeft="@dimen/userIconMarginLeft"
+        android:layout_marginTop="@dimen/userIconMarginTop"
+        android:layout_marginEnd="@dimen/userIconMarginRight"
+        android:layout_marginRight="@dimen/userIconMarginRight"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="centerCrop"
@@ -21,4 +22,36 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
         app:srcCompat="@drawable/avatar_image_placeholder" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/chatItemMargin"
+        android:layout_marginLeft="@dimen/chatItemMargin"
+        android:layout_marginTop="@dimen/chatItemMargin"
+        android:layout_marginEnd="@dimen/chatItemMargin"
+        android:layout_marginRight="@dimen/chatItemMargin"
+        android:layout_marginBottom="@dimen/chatItemMargin"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/chatUserIcon"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/chatItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="@dimen/chatItemNameSize" />
+
+        <TextView
+            android:id="@+id/chatItemMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:text="TextView"
+            android:textSize="@dimen/chatItemMessageSize" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

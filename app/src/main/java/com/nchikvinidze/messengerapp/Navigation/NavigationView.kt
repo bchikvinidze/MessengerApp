@@ -15,5 +15,6 @@ interface NavigationView {
         fun showHome()
         fun showProfile()
         fun showSearch()
+        fun showChat(user: String)
     }
 }

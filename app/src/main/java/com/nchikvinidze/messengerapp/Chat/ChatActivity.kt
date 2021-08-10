@@ -30,7 +30,6 @@ class ChatActivity : AppCompatActivity(), IChatView {
     private lateinit var chatrvAdapter : ChatItemsAdapter
     private lateinit var editMessage : EditText
     private lateinit var sendButton : ImageButton
-    private lateinit var sharedPref : SharedPreferences
     private lateinit var presenter : ChatPresenter
     private lateinit var chatappbar : AppBarLayout
     private lateinit var nick: String
@@ -50,16 +49,14 @@ class ChatActivity : AppCompatActivity(), IChatView {
         loader = LoadingDialog(this)
         addTollbarListener()
         val options = FirebaseRecyclerOptions.Builder<MessageItem>()
-            .setQuery(Firebase.database.getReference(ChatInteractor.MESSAGES+"/$nick-$otherNick"), MessageItem::class.java)
+            .setQuery(Firebase.database.getReference(ChatInteractor.MESSAGES+"/$nick/$otherNick"), MessageItem::class.java)
             .setLifecycleOwner(this)
             .build()
         chatrvAdapter = ChatItemsAdapter(options)
         chatrv.adapter = chatrvAdapter
-        chatrv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL ,false)
-        presenter = ChatPresenter(this, sharedPref)
-        showLoader()
-        presenter.showMessageHistory(nick, otherNick)
-        hideLoader()
+        val linearLayout = LinearLayoutManager(this, LinearLayoutManager.VERTICAL ,false)
+        chatrv.layoutManager = linearLayout
+        presenter = ChatPresenter(this)
 
         editMessage.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
@@ -79,6 +76,7 @@ class ChatActivity : AppCompatActivity(), IChatView {
             presenter.saveSentMessage(msg) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             afterMessageDisplay()
         }
+        afterMessageDisplay()
     }
 
     private fun setupView() {
@@ -87,7 +85,6 @@ class ChatActivity : AppCompatActivity(), IChatView {
         sendButton = findViewById(R.id.sendButton)
         chatappbar = findViewById(R.id.chatappbar)
         toolbar = findViewById(R.id.toolbar)
-        sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
         nick = intent.getStringExtra("nick").toString()
         otherNick = intent.getStringExtra("recipient").toString()
     }
@@ -115,14 +112,8 @@ class ChatActivity : AppCompatActivity(), IChatView {
         loader.dismissDialog()
     }
 
-    override fun displayMessage(msg: MessageItem){
-        //chatrvAdapter.list.add(msg)
-        chatrvAdapter.notifyDataSetChanged()
-        afterMessageDisplay()
-    }
-
     fun afterMessageDisplay(){
-        chatrv.scrollToPosition(chatrvAdapter.itemCount)
+        chatrv.scrollToPosition(chatrvAdapter.itemCount - 1)
         editMessage.setText("")
     }
 

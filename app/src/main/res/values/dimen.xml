@@ -60,4 +60,8 @@
     <dimen name="userItemHeight">120dp</dimen>
     <dimen name="userNameSize">18sp</dimen>
     <dimen name="professionSize">14sp</dimen>
+
+    <dimen name="chatItemMargin">20dp</dimen>
+    <dimen name="chatItemNameSize">18sp</dimen>
+    <dimen name="chatItemMessageSize">14sp</dimen>
 </resources>
