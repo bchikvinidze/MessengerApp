@@ -7,6 +7,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.nchikvinidze.messengerapp.data.MessageItem
+import java.net.URL
 
 class ChatInteractor(val presenter: IChatPresenter)   {
     val database = Firebase.database
@@ -21,6 +22,22 @@ class ChatInteractor(val presenter: IChatPresenter)   {
             messagesRef.child(msg.from).child(msg.to).child(it).setValue(msg)
             var msg2 = MessageItem(msg.timemillis, msg.time, !msg.sent, msg.from, msg.to, msg.text)
             messagesRef.child(msg.to).child(msg.from).child(it).setValue(msg2)
+        }
+    }
+
+    fun getProfileInfo(user: String){
+        val usersRef = database.getReference("users")
+        usersRef.child(user).get().addOnSuccessListener {
+            if(it.exists()){
+                var profession = it.child("prof").getValue<String>().toString()
+                presenter.setupProffession(profession)
+            }
+        }
+
+        val imageref = storage.reference.child(user)
+        imageref.downloadUrl.addOnSuccessListener {
+            var url = it
+            presenter.setupImage(URL(it.toString()))
         }
     }
 

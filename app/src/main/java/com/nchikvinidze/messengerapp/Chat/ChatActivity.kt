@@ -6,12 +6,15 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.SubtitleCollapsingToolbarLayout
@@ -21,6 +24,7 @@ import com.nchikvinidze.messengerapp.ChatItemsAdapter
 import com.nchikvinidze.messengerapp.LoadingDialog.LoadingDialog
 import com.nchikvinidze.messengerapp.R
 import com.nchikvinidze.messengerapp.data.MessageItem
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,6 +41,7 @@ class ChatActivity : AppCompatActivity(), IChatView {
     private lateinit var loader: LoadingDialog
     private lateinit var collapsingToolbar: SubtitleCollapsingToolbarLayout
     private lateinit var toolbar: Toolbar
+    private lateinit var userIcon: ImageView
     //maybe Ill move this someplace else later....
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -77,9 +82,11 @@ class ChatActivity : AppCompatActivity(), IChatView {
             afterMessageDisplay()
         }
         afterMessageDisplay()
+        presenter.loadData(otherNick)
     }
 
     private fun setupView() {
+        userIcon = findViewById(R.id.chat_user_icon)
         chatrv = findViewById(R.id.chatRv)
         editMessage = findViewById(R.id.editMessage)
         sendButton = findViewById(R.id.sendButton)
@@ -129,5 +136,16 @@ class ChatActivity : AppCompatActivity(), IChatView {
 
     override fun showHome() {
         finish()
+    }
+
+    override fun showImage(url: URL) {
+        Glide.with(this)
+            .load(url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(userIcon);
+    }
+
+    override fun showProffession(name: String) {
+        collapsingToolbar.subtitle = name
     }
 }

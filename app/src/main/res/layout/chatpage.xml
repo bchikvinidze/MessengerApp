@@ -31,7 +31,6 @@
             app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:navigationIcon="@drawable/ic_back"
-            app:subtitle="sdfsdf"
             app:title="werwer">
 
             <androidx.appcompat.widget.Toolbar
@@ -48,13 +47,14 @@
                 app:titleTextColor="@color/white" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageView"
+                android:id="@+id/chat_user_icon"
                 android:layout_width="@dimen/chatIconSize"
                 android:layout_height="@dimen/chatIconSize"
                 android:layout_gravity="bottom|right"
                 android:layout_marginEnd="@dimen/professionsz"
                 android:layout_marginRight="@dimen/professionsz"
                 android:layout_marginBottom="@dimen/chatIconMargin"
+                android:scaleType="centerCrop"
                 app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
                 app:srcCompat="@drawable/avatar_image_placeholder" />
 
