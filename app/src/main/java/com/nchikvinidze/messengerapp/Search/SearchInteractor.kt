@@ -5,6 +5,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.nchikvinidze.messengerapp.data.User
+import com.nchikvinidze.messengerapp.prefs
 import java.net.URL
 
 class SearchInteractor(val presenter: SearchList.Presenter) {
@@ -20,7 +21,7 @@ class SearchInteractor(val presenter: SearchList.Presenter) {
             var users: ArrayList<User> = ArrayList()
             it.children.forEach{
                 it.getValue(User::class.java)?.let {
-                    if (it.nick?.contains(name ?: "") == true) {
+                    if (it.nick?.contains(name ?: "") == true && it.nick != prefs.userName) {
                         val imgRef = storage.getReference(it.nick ?: "")
                         val user = it
                         imgRef.downloadUrl.addOnSuccessListener {
@@ -30,6 +31,9 @@ class SearchInteractor(val presenter: SearchList.Presenter) {
                         }
                     }
                 }
+            }
+            if (users.size == 0) {
+                presenter.dataLoaded(users)
             }
         }
     }
