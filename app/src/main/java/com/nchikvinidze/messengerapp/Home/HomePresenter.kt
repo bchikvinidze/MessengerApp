@@ -25,8 +25,8 @@ class HomePresenter(view: HomeList.View,
     }
 
     override fun loadMessages() {
-        // view?.showLoader()
-        // interactor.loadMessageList()
+        view?.showLoader()
+        interactor.loadMessageList()
     }
 
     override fun messagesLoaded(data: MutableList<MessageItem>) {

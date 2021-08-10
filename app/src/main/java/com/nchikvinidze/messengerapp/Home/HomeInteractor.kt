@@ -27,7 +27,6 @@ class HomeInteractor(val presenter: HomeList.Presenter) {
         messagesRef.child(childName).get().addOnSuccessListener {
             if(it.exists()){
                 var messagesList: MutableList<MessageItem> = mutableListOf()
-                var count = 0
                 for(child in it.children) {
                     val message = child.children.last()
                     var from = message.child(ChatInteractor.FROM).getValue<String>().toString()
@@ -40,13 +39,7 @@ class HomeInteractor(val presenter: HomeList.Presenter) {
                     var item = MessageItem(timemillis, time, false, from, nick, text)
                     if (from == nick)
                         item = MessageItem(timemillis, time, true, nick, to, text)
-                    val otherNick = if (prefs.userName == item.from) item.to else item.from
-                    val imgRef = storage.getReference(otherNick)
-                    imgRef.downloadUrl.addOnSuccessListener {
-                        item.url = URL(it.toString())
-                        messagesList.add(item)
-                    }
-                    count += 1
+                    messagesList.add(item)
                 }
                 var sortedList = messagesList.sortedWith(compareBy({ it.timemillis }))
                 presenter.messagesLoaded(sortedList.toMutableList())
