@@ -2,9 +2,11 @@ package com.nchikvinidze.messengerapp.Search
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nchikvinidze.messengerapp.Chat.ChatActivity
@@ -20,6 +22,7 @@ class SearchActivity: AppCompatActivity(), SearchList.View, ClickListener {
     private lateinit var loader: LoadingDialog
     private lateinit var searchView: SearchView
     private lateinit var toolbar: Toolbar
+    private lateinit var emptyTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,7 @@ class SearchActivity: AppCompatActivity(), SearchList.View, ClickListener {
         adapter = SearchAdapter(ArrayList(), this)
         adapter.clickListener = this
         val recyclerView: RecyclerView = findViewById(R.id.search_recycler_view)
+        emptyTextView = findViewById(R.id.empty_users)
         recyclerView.adapter = adapter
         layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -75,6 +79,7 @@ class SearchActivity: AppCompatActivity(), SearchList.View, ClickListener {
     }
 
     override fun showUsers(data: List<User>) {
+        emptyTextView.isVisible = data.isEmpty()
         adapter.update(data)
     }
 

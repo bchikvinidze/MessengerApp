@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +24,7 @@ class HomeFragment: Fragment(R.layout.home), HomeList.View {
     private lateinit var loader: LoadingDialog
     var clickListener: MessageClickListener? = null
     private lateinit var searchView: SearchView
+    private lateinit var emptyTextView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +34,7 @@ class HomeFragment: Fragment(R.layout.home), HomeList.View {
         val root = inflater.inflate(R.layout.home, container, false)
         recyclerView = root.findViewById(R.id.recycler_view)
         searchView = root.findViewById(R.id.home_search)
+        emptyTextView = root.findViewById(R.id.empty_home)
         adapter = HomeAdapter(ArrayList(), root.context)
         adapter.clickListener = clickListener
         recyclerView.adapter = adapter
@@ -92,6 +96,7 @@ class HomeFragment: Fragment(R.layout.home), HomeList.View {
     }
 
     override fun showMessages(data: List<MessageItem>) {
+        emptyTextView.isVisible = data.isEmpty()
         adapter.update(data)
     }
 

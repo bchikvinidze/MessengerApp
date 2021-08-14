@@ -43,6 +43,7 @@
     <dimen name="homeToolbarHeight">100dp</dimen>
     <dimen name="homeSearchMarginLeft">10dp</dimen>
     <dimen name="homeSearchMarginBottom">20dp</dimen>
+    <dimen name="emptyHome">18sp</dimen>
 
     <dimen name="loaderMargin">16dp</dimen>
     <dimen name="loaderTextSize">16sp</dimen>

@@ -9,4 +9,6 @@
     <string name="notregistered">Not registered?</string>
     <string name="whatido">What I do</string>
     <string name="loading">Loading...</string>
+    <string name="empty_conversation">No conversations found</string>
+    <string name="empty_users">No users found</string>
 </resources>
