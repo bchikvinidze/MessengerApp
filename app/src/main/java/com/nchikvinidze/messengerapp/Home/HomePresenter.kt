@@ -58,4 +58,8 @@ class HomePresenter(view: HomeList.View,
             view?.showMessages(list.filter { it.from == query || it.to == query })
         }
     }
+
+    override fun showError() {
+        view?.showError()
+    }
 }

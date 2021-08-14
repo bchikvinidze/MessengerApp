@@ -40,4 +40,8 @@ class ProfilePresenter(view: ProfileView.View,
     override fun onDestroy() {
         this.view = null
     }
+
+    override fun showError() {
+        view?.showError()
+    }
 }

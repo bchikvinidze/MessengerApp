@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -27,18 +28,19 @@ class ProfileFragment(): Fragment(R.layout.profile), ProfileView.View {
     private lateinit var presenter: ProfileView.Presenter
     private var loader: LoadingDialog? = null
     var clickListener: SignOutClickListener? = null
+    private lateinit var root: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view = inflater.inflate(R.layout.profile, container, false)
-        image = view.findViewById(R.id.defaultImage)
-        nickname = view.findViewById(R.id.nickname)
-        whatido = view.findViewById(R.id.whatido)
-        updateBtn = view.findViewById(R.id.updateButton)
-        signOutButton = view.findViewById(R.id.signoutButton)
+        root = inflater.inflate(R.layout.profile, container, false)
+        image = root.findViewById(R.id.defaultImage)
+        nickname = root.findViewById(R.id.nickname)
+        whatido = root.findViewById(R.id.whatido)
+        updateBtn = root.findViewById(R.id.updateButton)
+        signOutButton = root.findViewById(R.id.signoutButton)
         loader = activity?.let { LoadingDialog(it) }
         setPresenter(ProfilePresenter(this, DependencyInjectorImpl()))
 
@@ -92,6 +94,10 @@ class ProfileFragment(): Fragment(R.layout.profile), ProfileView.View {
 
     override fun setPresenter(presenter: ProfileView.Presenter) {
         this.presenter = presenter
+    }
+
+    override fun showError() {
+        Toast.makeText(root.context, getString(R.string.userError), Toast.LENGTH_SHORT).show()
     }
 }
 

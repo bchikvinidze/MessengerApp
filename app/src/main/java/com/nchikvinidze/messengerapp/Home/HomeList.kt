@@ -13,6 +13,7 @@ interface HomeList {
         fun addItem(item: MessageItem)
         fun onViewCreated()
         fun search(query: String?)
+        fun showError()
     }
 
     interface View : BaseView<Presenter> {
@@ -21,5 +22,6 @@ interface HomeList {
         fun showMessages(data: List<MessageItem>)
         fun showLoader()
         fun hideLoader()
+        fun showError()
     }
 }

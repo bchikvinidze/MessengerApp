@@ -11,6 +11,7 @@ interface ProfileView {
         fun setupProfileProfession(nick: String, profession : String)
         fun setupProfileImage(url : String)
         fun updateUser(newProf : String, newImage : Drawable)
+        fun showError()
     }
 
     interface View : BaseView<Presenter> {
@@ -19,5 +20,6 @@ interface ProfileView {
         fun showLogin()
         fun setupProfileProfession(nick: String, profession : String)
         fun setupProfileImage(url : String)
+        fun showError()
     }
 }

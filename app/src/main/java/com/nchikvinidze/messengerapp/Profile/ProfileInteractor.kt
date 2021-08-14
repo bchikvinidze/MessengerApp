@@ -38,7 +38,7 @@ class ProfileInteractor(val presenter: ProfilePresenter) {
                     usersRef.child(nick).child("prof").setValue(newProf)
                 }
             } else {
-                Log.e("USERS UPDATE ERROR", "NOT FOUND")
+                presenter.showError()
             }
         }
     }

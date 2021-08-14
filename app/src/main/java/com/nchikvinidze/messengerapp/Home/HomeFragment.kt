@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -25,13 +26,14 @@ class HomeFragment: Fragment(R.layout.home), HomeList.View {
     var clickListener: MessageClickListener? = null
     private lateinit var searchView: SearchView
     private lateinit var emptyTextView: TextView
+    private lateinit var root: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.home, container, false)
+        root = inflater.inflate(R.layout.home, container, false)
         recyclerView = root.findViewById(R.id.recycler_view)
         searchView = root.findViewById(R.id.home_search)
         emptyTextView = root.findViewById(R.id.empty_home)
@@ -106,6 +108,10 @@ class HomeFragment: Fragment(R.layout.home), HomeList.View {
 
     override fun hideLoader() {
         loader.dismissDialog()
+    }
+
+    override fun showError() {
+        Toast.makeText(root.context, getString(R.string.homeError), Toast.LENGTH_SHORT).show()
     }
 }
 
