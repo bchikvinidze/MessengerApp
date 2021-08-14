@@ -44,9 +44,9 @@ class MessageItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         if (difference/seconds < 1) {
             timeTextView.text = "1" + " " + itemView.context.getString(R.string.minute)
         } else if (difference/minutes < 1) {
-            timeTextView.text = minutesDateFormat.format(item.timemillis) + " " + itemView.context.getString(R.string.minute)
+            timeTextView.text = minutesDateFormat.format(difference) + " " + itemView.context.getString(R.string.minute)
         } else if (difference/hours < 1) {
-            timeTextView.text = hourDateFormat.format(item.timemillis) + " " + itemView.context.getString(R.string.hour)
+            timeTextView.text = hourDateFormat.format(difference) + " " + itemView.context.getString(R.string.hour)
         } else {
             timeTextView.text = simpleDateFormat.format(item.timemillis)
         }
