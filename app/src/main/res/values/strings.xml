@@ -13,4 +13,6 @@
     <string name="empty_users">No users found</string>
     <string name="homeError">Error. Can not show conversations</string>
     <string name="userError">Error. Can not update user</string>
+    <string name="minute">min</string>
+    <string name="hour">hour</string>
 </resources>

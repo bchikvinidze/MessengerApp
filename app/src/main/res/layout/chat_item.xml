@@ -24,6 +24,7 @@
         app:srcCompat="@drawable/avatar_image_placeholder" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/chatItemMargin"
@@ -34,7 +35,7 @@
         android:layout_marginBottom="@dimen/chatItemMargin"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/chat_time"
         app:layout_constraintStart_toEndOf="@+id/chatUserIcon"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -53,5 +54,16 @@
             android:text="TextView"
             android:textSize="@dimen/chatItemMessageSize" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/chat_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/chatItemMargin"
+        android:layout_marginEnd="@dimen/chatItemMargin"
+        android:layout_marginRight="@dimen/chatItemMargin"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
